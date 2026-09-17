@@ -1,0 +1,521 @@
+/* =====================================================
+   LEITOR
+===================================================== */
+
+.reader {
+
+    background: #171311;
+
+    color: var(--cream);
+
+    min-height: 100vh;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.reader-header {
+
+    height: 70px;
+
+    padding:
+        0 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    font-size: 13px;
+}
+
+
+.reader-comuna {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    letter-spacing: -.05em;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   PONTOS
+===================================================== */
+
+.reader-dots {
+
+    display: flex;
+
+    gap: 5px;
+}
+
+
+.reader-dots span {
+
+    width: 14px;
+    height: 14px;
+
+    background: var(--cream);
+
+    border-radius: 50%;
+}
+
+
+/* =====================================================
+   ÁREA PRINCIPAL
+===================================================== */
+
+.reader-main {
+
+    height:
+        calc(100vh - 125px);
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        130px;
+
+    gap: 25px;
+
+    padding:
+        20px 35px;
+}
+
+
+/* =====================================================
+   LIVRO
+===================================================== */
+
+.book-area {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.book {
+
+    width: min(78vw, 1100px);
+
+    aspect-ratio: 1.5 / 1;
+
+    display: flex;
+
+    perspective: 1800px;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.45);
+}
+
+
+.book-page {
+
+    position: relative;
+
+    width: 50%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: var(--cream);
+
+}
+
+
+.book-page img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =====================================================
+   DOBRA
+===================================================== */
+
+.left-page {
+
+    transform-origin: right center;
+
+}
+
+
+.right-page {
+
+    transform-origin: left center;
+
+}
+
+
+.book::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+    bottom: 0;
+
+    width: 2px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        rgba(0,0,0,.12);
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   BOTÕES LATERAIS
+===================================================== */
+
+.book-arrow {
+
+    position: absolute;
+
+    z-index: 10;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--cream);
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    opacity: .65;
+
+    transition:
+        opacity 200ms ease,
+        transform 200ms ease;
+}
+
+
+.book-arrow:hover {
+
+    opacity: 1;
+}
+
+
+.previous {
+
+    left: 0;
+}
+
+
+.next {
+
+    right: 0;
+}
+
+
+/* =====================================================
+   THUMBNAILS
+===================================================== */
+
+.thumbnails {
+
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+.thumbnail-list {
+
+    height: 100%;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    padding-right: 5px;
+}
+
+
+.thumbnail {
+
+    width: 90px;
+
+    aspect-ratio: 3 / 4;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid transparent;
+
+    opacity: .45;
+
+    cursor: pointer;
+
+    transition:
+        opacity 200ms ease,
+        transform 200ms ease,
+        border-color 200ms ease;
+}
+
+
+.thumbnail img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+.thumbnail:hover {
+
+    opacity: .8;
+
+}
+
+
+.thumbnail.active {
+
+    opacity: 1;
+
+    border:
+        2px solid var(--cream);
+
+    transform:
+        scale(1.04);
+}
+
+
+/* =====================================================
+   CONTROLES
+===================================================== */
+
+.reader-controls {
+
+    height: 55px;
+
+    padding:
+        0 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    font-size: 12px;
+}
+
+
+.reader-controls button {
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--cream);
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+
+#page-counter {
+
+    min-width: 60px;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   ANIMAÇÃO
+===================================================== */
+
+.page-turn-left {
+
+    animation:
+        turn-left
+        550ms
+        ease;
+}
+
+
+.page-turn-right {
+
+    animation:
+        turn-right
+        550ms
+        ease;
+}
+
+
+@keyframes turn-left {
+
+    0% {
+        transform:
+            rotateY(0deg);
+    }
+
+    50% {
+        transform:
+            rotateY(-90deg);
+    }
+
+    100% {
+        transform:
+            rotateY(0deg);
+    }
+}
+
+
+@keyframes turn-right {
+
+    0% {
+        transform:
+            rotateY(0deg);
+    }
+
+    50% {
+        transform:
+            rotateY(90deg);
+    }
+
+    100% {
+        transform:
+            rotateY(0deg);
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .reader {
+
+        overflow-y: auto;
+
+    }
+
+
+    .reader-header {
+
+        padding: 0 20px;
+
+    }
+
+
+    .reader-main {
+
+        height: auto;
+
+        display: flex;
+
+        flex-direction: column;
+
+        padding:
+            20px;
+
+    }
+
+
+    .book {
+
+        width: 100%;
+
+        aspect-ratio: 1.45 / 1;
+
+    }
+
+
+    .book-arrow {
+
+        font-size: 22px;
+
+    }
+
+
+    .thumbnails {
+
+        height: 90px;
+
+        width: 100%;
+
+        overflow: hidden;
+
+    }
+
+
+    .thumbnail-list {
+
+        flex-direction: row;
+
+        overflow-x: auto;
+
+        overflow-y: hidden;
+
+    }
+
+
+    .thumbnail {
+
+        width: 55px;
+
+        height: 72px;
+
+    }
+
+
+    .reader-controls {
+
+        padding:
+            0 20px;
+
+    }
+
+}

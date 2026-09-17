@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>uuuuuuuuu — leitor</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/leitor.css"
+    >
+
+</head>
+
+
+<body class="reader-page">
+
+
+    <!-- =====================================================
+         BARRA SUPERIOR
+    ====================================================== -->
+
+    <header class="reader-header">
+
+        <a
+            href="zines.html"
+            class="site-dots"
+            aria-label="Voltar aos zines"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+
+
+        <div class="reader-meta">
+
+            <span class="reader-name">
+
+            </span>
+
+            <span class="reader-section">
+                leitura
+            </span>
+
+        </div>
+
+
+        <div class="reader-controls">
+
+            <span class="page-counter">
+
+                <span id="current-page">
+                    01
+                </span>
+
+                <span class="counter-separator">
+                    /
+                </span>
+
+                <span id="total-pages">
+                    24
+                </span>
+
+            </span>
+
+
+            <button
+                id="fullscreen-button"
+                class="fullscreen-button"
+                type="button"
+                aria-label="Tela cheia"
+            >
+                ⛶
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         LEITOR
+    ====================================================== -->
+
+    <main class="reader">
+
+
+        <section class="book-area">
+
+
+            <!-- ÁREA DE CLIQUE ESQUERDA -->
+
+            <button
+                class="page-zone page-zone-prev"
+                id="prev-zone"
+                type="button"
+                aria-label="Página anterior"
+            ></button>
+
+
+
+            <!-- LIVRO -->
+
+            <div
+                class="book"
+                id="book"
+            >
+
+
+                <!-- PÁGINA ESQUERDA -->
+
+                <div
+                    class="book-page left-page"
+                    id="left-page"
+                >
+
+                    <div class="page-content"></div>
+
+                </div>
+
+
+
+                <!-- PÁGINA DIREITA -->
+
+                <div
+                    class="book-page right-page"
+                    id="right-page"
+                >
+
+                    <div class="page-content"></div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ÁREA DE CLIQUE DIREITA -->
+
+            <button
+                class="page-zone page-zone-next"
+                id="next-zone"
+                type="button"
+                aria-label="Próxima página"
+            ></button>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             MINIATURAS
+        ================================================== -->
+
+        <aside
+            class="thumbnails"
+            id="thumbnails"
+            aria-label="Páginas"
+        ></aside>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         RODAPÉ
+    ====================================================== -->
+
+    <footer class="reader-footer">
+
+
+        <a
+            href="zines.html"
+            class="back-to-zines"
+        >
+            ← zines
+        </a>
+
+
+        <div class="reader-navigation">
+
+
+            <button
+                id="previous-button"
+                type="button"
+            >
+                ← previous
+            </button>
+
+
+            <span class="reader-title">
+                uuuuuuuuu
+            </span>
+
+
+            <button
+                id="next-button"
+                type="button"
+            >
+                next →
+            </button>
+
+
+        </div>
+
+
+    </footer>
+
+
+
+    <script src="assets/js/leitor.js"></script>
+
+</body>
+
+</html>

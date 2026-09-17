@@ -1,0 +1,1303 @@
+/* =========================================================
+   COMUNA — LEITOR
+   ========================================================= */
+
+
+/* =========================================================
+   VARIÁVEIS
+   ========================================================= */
+
+:root {
+
+    --reader-black: #171512;
+
+    --reader-black-soft: #211e1a;
+
+    --reader-cream: #eee9df;
+
+    --reader-line: rgba(238,233,223,.18);
+
+    --reader-line-dark: rgba(23,21,18,.18);
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+.reader-page {
+
+    width: 100%;
+    height: 100vh;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    background: var(--reader-cream);
+
+    color: var(--reader-black);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+.reader-page a {
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.reader-header {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 58px;
+
+    padding:
+        0 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: var(--reader-cream);
+
+    border-bottom:
+        1px solid var(--reader-line);
+
+    z-index: 100;
+
+}
+
+
+/* =========================================================
+   TRÊS PONTOS
+   ========================================================= */
+
+.reader-header .site-dots {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    width: 76px;
+
+    padding: 0;
+
+    margin: 0;
+
+}
+
+
+.reader-header .site-dots span {
+
+    display: block;
+
+    width: 22px;
+    height: 22px;
+
+    flex: 0 0 22px;
+
+    border-radius: 50%;
+
+    background: var(--reader-black);
+
+    transition:
+        transform .25s ease,
+        opacity .25s ease;
+
+}
+
+
+.reader-header .site-dots:hover span:nth-child(1) {
+
+    transform:
+        translateX(-2px);
+
+}
+
+
+.reader-header .site-dots:hover span:nth-child(2) {
+
+    transform:
+        scale(1.35);
+
+}
+
+
+.reader-header .site-dots:hover span:nth-child(3) {
+
+    transform:
+        translateX(2px);
+
+}
+
+
+/* =========================================================
+   META
+   ========================================================= */
+
+.reader-meta {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    font-size: 9px;
+
+    letter-spacing: .12em;
+
+    text-transform: uppercase;
+
+}
+
+
+.reader-name {
+
+    opacity: .9;
+
+}
+
+
+.reader-section {
+
+    opacity: .4;
+
+}
+
+
+/* =========================================================
+   CONTROLES
+   ========================================================= */
+
+.reader-controls {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    font-size: 9px;
+
+    letter-spacing: .12em;
+
+}
+
+
+.page-counter {
+
+    white-space: nowrap;
+
+}
+
+
+.counter-separator {
+
+    margin: 0 4px;
+
+    opacity: .35;
+
+}
+
+
+.fullscreen-button {
+
+    width: 30px;
+
+    height: 30px;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid var(--reader-line);
+
+    background: transparent;
+
+    color: var(--reader-black);
+
+    font-size: 16px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+
+}
+
+
+.fullscreen-button:hover {
+
+    background: var(--reader-black);
+
+    color: var(--reader-cream);
+
+}
+
+
+/* =========================================================
+   ÁREA PRINCIPAL
+   ========================================================= */
+
+.reader {
+
+    width: 100%;
+
+    height: 100vh;
+
+    padding:
+        58px 20px 58px 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        130px;
+
+    gap: 16px;
+
+}
+
+
+/* =========================================================
+   ÁREA DO LIVRO
+   ========================================================= */
+
+.book-area {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    perspective: 1600px;
+
+}
+
+
+/* =========================================================
+   LIVRO
+   ========================================================= */
+
+.book {
+
+    position: relative;
+
+    width:
+        min(
+            calc(100vw - 170px),
+            1420px
+        );
+
+    height:
+        min(
+            calc(100vh - 150px),
+            790px
+        );
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    transform-style:
+        preserve-3d;
+
+    box-shadow:
+        0 28px 70px rgba(0,0,0,.5);
+
+}
+
+
+/* =========================================================
+   PÁGINAS
+   ========================================================= */
+
+.book-page {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background:
+        var(--reader-cream);
+
+    color:
+        var(--reader-black);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    backface-visibility:
+        hidden;
+
+}
+
+
+/* =========================================================
+   PÁGINA ESQUERDA
+   ========================================================= */
+
+.left-page {
+
+    border-radius:
+        2px 0 0 2px;
+
+    box-shadow:
+        inset -12px 0 22px
+        rgba(0,0,0,.08);
+
+}
+
+
+/* =========================================================
+   PÁGINA DIREITA
+   ========================================================= */
+
+.right-page {
+
+    border-radius:
+        0 2px 2px 0;
+
+    box-shadow:
+        inset 12px 0 22px
+        rgba(0,0,0,.08);
+
+}
+
+
+/* =========================================================
+   DOBRA CENTRAL
+   ========================================================= */
+
+.book::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 50%;
+
+    width: 1px;
+
+    background:
+        rgba(23,21,18,.16);
+
+    transform:
+        translateX(-50%);
+
+    z-index: 20;
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   CONTEÚDO DA PÁGINA
+   ========================================================= */
+
+.page-content {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            50px,
+            8vw,
+            150px
+        );
+
+    letter-spacing:
+        -.08em;
+
+    user-select: none;
+
+}
+
+
+/* =========================================================
+   CORES DAS PÁGINAS
+   ========================================================= */
+
+.page-cream {
+
+    background: #eee9df;
+
+    color: #171512;
+
+}
+
+
+.page-red {
+
+    background: #EC1F20;
+
+    color: #171512;
+
+}
+
+
+.page-pink {
+
+    background: #FFAAC7;
+
+    color: #171512;
+
+}
+
+
+.page-green {
+
+    background: #C0FF00;
+
+    color: #171512;
+
+}
+
+
+.page-indigo {
+
+    background: #2C1B80;
+
+    color: #eee9df;
+
+}
+
+
+.page-wine {
+
+    background: #4F2730;
+
+    color: #eee9df;
+
+}
+
+
+/* =========================================================
+   PÁGINA DE VIRADA
+   ========================================================= */
+
+.turning-page {
+
+    position: absolute;
+
+    top: 0;
+
+    width: 50%;
+    height: 100%;
+
+    display: none;
+
+    transform-style:
+        preserve-3d;
+
+    z-index: 30;
+
+    pointer-events: none;
+
+}
+
+
+.turning-front,
+.turning-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    backface-visibility:
+        hidden;
+
+}
+
+
+.turning-front {
+
+    transform:
+        rotateY(0deg);
+
+}
+
+
+.turning-back {
+
+    transform:
+        rotateY(180deg);
+
+}
+
+
+/* =========================================================
+   VIRADA — PRÓXIMA
+   ========================================================= */
+
+.book.turn-next .turning-page {
+
+    display: block;
+
+    left: 50%;
+
+    transform-origin:
+        left center;
+
+    animation:
+        turn-next
+        .30s
+        cubic-bezier(.4,0,.2,1)
+        forwards;
+
+}
+
+
+@keyframes turn-next {
+
+    from {
+
+        transform:
+            rotateY(0deg);
+
+        box-shadow:
+            -4px 0 10px
+            rgba(0,0,0,.08);
+
+    }
+
+    45% {
+
+        box-shadow:
+            -18px 0 30px
+            rgba(0,0,0,.22);
+
+    }
+
+    to {
+
+        transform:
+            rotateY(-180deg);
+
+        box-shadow:
+            3px 0 8px
+            rgba(0,0,0,.04);
+
+    }
+
+}
+
+
+/* =========================================================
+   VIRADA — ANTERIOR
+   ========================================================= */
+
+.book.turn-prev .turning-page {
+
+    display: block;
+
+    left: 0;
+
+    transform-origin:
+        right center;
+
+    animation:
+        turn-prev
+        .55s
+        cubic-bezier(.4,0,.2,1)
+        forwards;
+
+}
+
+
+@keyframes turn-prev {
+
+    from {
+
+        transform:
+            rotateY(0deg);
+
+        box-shadow:
+            4px 0 10px
+            rgba(0,0,0,.08);
+
+    }
+
+    45% {
+
+        box-shadow:
+            18px 0 30px
+            rgba(0,0,0,.22);
+
+    }
+
+    to {
+
+        transform:
+            rotateY(180deg);
+
+        box-shadow:
+            -3px 0 8px
+            rgba(0,0,0,.04);
+
+    }
+
+}
+
+
+/* =========================================================
+   ÁREAS DE CLIQUE
+   ========================================================= */
+
+.page-zone {
+
+    position: absolute;
+
+    top: 10%;
+
+    height: 80%;
+
+    width: 22%;
+
+    z-index: 50;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+}
+
+
+.page-zone-prev {
+
+    left: 3%;
+
+}
+
+
+.page-zone-next {
+
+    right: 3%;
+
+}
+
+
+/* =========================================================
+   THUMBNAILS
+   ========================================================= */
+
+.thumbnails {
+
+    height:
+        calc(100vh - 116px);
+
+    margin-top: 0;
+
+    padding:
+        10px 5px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    overflow-y: auto;
+
+    scrollbar-width: none;
+
+    border-left:
+        1px solid var(--reader-line);
+
+}
+
+
+.thumbnails::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   MINIATURA
+   ========================================================= */
+
+.thumbnail {
+
+    position: relative;
+
+    flex: 0 0 auto;
+
+    width: 170px;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    border:
+        1px solid transparent;
+
+    opacity: .42;
+
+    cursor: pointer;
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease,
+        border-color .2s ease;
+
+}
+
+
+.thumbnail:hover {
+
+    opacity: .85;
+
+    transform:
+        scale(1.04);
+
+}
+
+
+.thumbnail.active {
+
+    opacity: 1;
+
+    border:
+        1px solid var(--reader-cream);
+
+    transform:
+        scale(1.05);
+
+}
+
+
+/* =========================================================
+   CONTEÚDO DA MINIATURA
+   ========================================================= */
+
+.thumbnail-inner {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 18px;
+
+    letter-spacing: -.08em;
+
+}
+
+
+/* =========================================================
+   PEQUENO ELEMENTO GRÁFICO NAS MINIATURAS
+   ========================================================= */
+
+.thumbnail-inner::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 10%;
+
+    right: 10%;
+
+    bottom: 10%;
+
+    height: 1px;
+
+    background: currentColor;
+
+    opacity: .35;
+
+}
+
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+
+.reader-footer {
+
+    position: fixed;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+
+    height: 58px;
+
+    padding:
+        0 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background:
+        var(--reader-cream);
+
+    border-top:
+        1px solid var(--reader-line);
+
+    z-index: 100;
+
+    font-size: 9px;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =========================================================
+   VOLTAR
+   ========================================================= */
+
+.back-to-zines {
+
+    opacity: .55;
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease;
+
+}
+
+
+.back-to-zines:hover {
+
+    opacity: 1;
+
+    transform:
+        translateX(-4px);
+
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+   ========================================================= */
+
+.reader-navigation {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+
+}
+
+
+.reader-navigation button {
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--reader-black);
+
+    font: inherit;
+
+    font-size: 9px;
+
+    letter-spacing: .1em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    opacity: .55;
+
+    transition:
+        opacity .2s ease;
+
+}
+
+
+.reader-navigation button:hover {
+
+    opacity: 1;
+
+}
+
+
+.reader-title {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-style: italic;
+
+    font-size: 12px;
+
+    letter-spacing: 0;
+
+    text-transform: none;
+
+    opacity: .4;
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .reader {
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            78px;
+
+        padding:
+            58px 12px 58px 12px;
+
+        gap: 10px;
+
+    }
+
+
+    .book {
+
+        width:
+            min(
+                calc(100vw - 110px),
+                1100px
+            );
+
+        height:
+            min(
+                calc(100vh - 150px),
+                650px
+            );
+
+    }
+
+
+    .thumbnail {
+
+        width: 58px;
+
+    }
+
+
+    .reader-meta {
+
+        display: none;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .reader-page {
+
+        overflow: hidden;
+
+    }
+
+
+    .reader-header {
+
+        height: 52px;
+
+        padding:
+            0 16px;
+
+    }
+
+
+    .reader-header .site-dots {
+
+        width: auto;
+
+    }
+
+
+    .reader-header .site-dots span {
+
+        width: 22px;
+        height: 22px;
+
+        flex-basis: 11px;
+
+    }
+
+
+    .reader-controls {
+
+        gap: 12px;
+
+    }
+
+
+    .reader {
+
+        height: 100vh;
+
+        padding:
+            52px 10px 105px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 8px;
+
+    }
+
+
+    .book-area {
+
+        width: 100%;
+
+        height:
+            calc(100vh - 165px);
+
+        min-height: 0;
+
+    }
+
+
+    .book {
+
+        width:
+            96vw;
+
+        height:
+            min(
+                62vw,
+                520px
+            );
+
+    }
+
+
+    .page-content {
+
+        font-size:
+            clamp(
+                40px,
+                14vw,
+                90px
+            );
+
+    }
+
+
+    .thumbnails {
+
+        width: 100%;
+
+        height: 64px;
+
+        padding:
+            5px 10px;
+
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        gap: 6px;
+
+        overflow-x: auto;
+
+        overflow-y: hidden;
+
+        border-left: none;
+
+        border-top:
+            1px solid var(--reader-line);
+
+    }
+
+
+    .thumbnail {
+
+        width: 43px;
+
+        height: 55px;
+
+        aspect-ratio: auto;
+
+    }
+
+
+    .thumbnail-inner {
+
+        font-size: 11px;
+
+    }
+
+
+    .reader-footer {
+
+        height: 52px;
+
+        padding:
+            0 16px;
+
+    }
+
+
+    .reader-navigation {
+
+        gap: 12px;
+
+    }
+
+
+    .reader-title {
+
+        display: none;
+
+    }
+
+
+    .back-to-zines {
+
+        font-size: 8px;
+
+    }
+
+
+    .reader-navigation button {
+
+        font-size: 8px;
+
+    }
+
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE / REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+
+    }
+
+}

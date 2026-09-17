@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Leitura — Volume 01</title>
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../../assets/css/reader.css"
+    >
+
+</head>
+
+
+<body class="reader">
+
+
+<header class="reader-header">
+
+
+    <a
+        href="../../index.html"
+        class="reader-dots"
+    >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </a>
+
+
+    <a
+        href="../../sobre.html"
+        class="reader-comuna"
+    >
+        comuna
+    </a>
+
+
+    <span>
+        ZINE 01
+    </span>
+
+</header>
+
+
+
+<main class="reader-main">
+
+
+    <!-- ==========================================
+         FLIPBOOK
+    =========================================== -->
+
+    <section class="book-area">
+
+        <button
+            class="book-arrow previous"
+            id="previous"
+            aria-label="Página anterior"
+        >
+            ←
+        </button>
+
+
+        <div class="book">
+
+            <div
+                class="book-page left-page"
+                id="left-page"
+            >
+            </div>
+
+
+            <div
+                class="book-page right-page"
+                id="right-page"
+            >
+            </div>
+
+        </div>
+
+
+        <button
+            class="book-arrow next"
+            id="next"
+            aria-label="Próxima página"
+        >
+            →
+        </button>
+
+    </section>
+
+
+
+    <!-- ==========================================
+         THUMBNAILS
+    =========================================== -->
+
+    <aside class="thumbnails">
+
+        <div
+            class="thumbnail-list"
+            id="thumbnail-list"
+        ></div>
+
+    </aside>
+
+</main>
+
+
+
+<footer class="reader-controls">
+
+    <button id="control-prev">
+        ←
+    </button>
+
+
+    <span id="page-counter">
+        01 / 24
+    </span>
+
+
+    <button id="control-next">
+        →
+    </button>
+
+
+    <button id="fullscreen">
+        ⛶
+    </button>
+
+</footer>
+
+
+
+<script src="../../assets/js/reader.js"></script>
+
+</body>
+
+</html>
