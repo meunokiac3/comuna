@@ -1,0 +1,507 @@
+/* =========================================================
+   COMUNA — TRABALHOS
+   mesma família visual de ZINES, mas com lógica de catálogo
+   ========================================================= */
+
+:root {
+    --black: #100b09;
+    --cream: #fff3df;
+    --cream-dark: #e8ddcb;
+
+    --racing-red: #EC1F20;
+    --baby-pink: #FFAAC7;
+    --chartreuse: #C0FF00;
+    --indigo-ink: #2C1B80;
+    --wine-plum: #4F2730;
+}
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--black);
+}
+
+.trabalhos-page,
+.works-page {
+    min-height: 100vh;
+    background: var(--cream) !important;
+    color: var(--black) !important;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.trabalhos-header,
+.works-header {
+    position: relative;
+    z-index: 20;
+
+    height: 74px;
+    padding: 0 clamp(20px, 3vw, 42px);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--cream) !important;
+    color: var(--black) !important;
+
+    border-bottom: 1px solid rgba(16, 11, 9, .28);
+
+    backdrop-filter: none !important;
+}
+
+.site-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.site-dots span {
+    width: 22px;
+    height: 22px;
+
+    display: block;
+    border-radius: 50%;
+
+    background: var(--black);
+
+    transition:
+        transform .25s ease,
+        opacity .25s ease;
+}
+
+.site-dots span:nth-child(1) {
+    background: var(--racing-red);
+}
+
+.site-dots span:nth-child(2) {
+    background: var(--chartreuse);
+}
+
+.site-dots span:nth-child(3) {
+    background: var(--indigo-ink);
+}
+
+.site-dots span:hover {
+    transform: scale(.78);
+    opacity: .6;
+}
+
+
+/* =========================================================
+   TÍTULO / ABERTURA
+   ========================================================= */
+
+.trabalhos-intro,
+.works-intro {
+    min-height: 78vh;
+    padding:
+        11vh
+        clamp(24px, 7vw, 110px)
+        10vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    box-sizing: border-box;
+}
+
+.trabalhos-intro h1,
+.works-intro h1 {
+    margin: 0;
+
+    max-width: 1500px;
+
+    font-size: clamp(80px, 17vw, 250px);
+    line-height: .72;
+    letter-spacing: -.09em;
+    font-weight: 700;
+
+    color: var(--black);
+}
+
+.trabalhos-intro p,
+.works-intro p {
+    max-width: 520px;
+    margin: 45px 0 0;
+
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: .01em;
+}
+
+
+/* =========================================================
+   LINHA DE SEÇÃO
+   ========================================================= */
+
+.trabalhos-section-title,
+.works-section-title,
+.section-title {
+    margin:
+        0
+        clamp(24px, 7vw, 110px)
+        20px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid rgba(16, 11, 9, .32);
+
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+
+    opacity: .65;
+}
+
+
+/* =========================================================
+   LISTA DE TRABALHOS
+   ========================================================= */
+
+.trabalhos-list,
+.works-list {
+    margin: 0 clamp(24px, 7vw, 110px);
+    padding: 0;
+
+    border-top: 1px solid rgba(16, 11, 9, .32);
+}
+
+
+/* cada trabalho */
+
+.trabalho,
+.work,
+.work-item {
+    position: relative;
+
+    display: grid;
+    grid-template-columns:
+        minmax(40px, .35fr)
+        minmax(180px, 1.6fr)
+        minmax(160px, 1fr);
+
+    gap: 30px;
+
+    padding: 22px 0;
+
+    border-bottom: 1px solid rgba(16, 11, 9, .25);
+
+    transition:
+        padding .3s ease,
+        background .3s ease;
+}
+
+
+/* número */
+
+.trabalho-number,
+.work-number,
+.work-index {
+    font-size: 10px;
+    letter-spacing: .08em;
+    opacity: .55;
+}
+
+
+/* título */
+
+.trabalho-title,
+.work-title {
+    font-size: clamp(28px, 4vw, 64px);
+    line-height: .86;
+    letter-spacing: -.055em;
+
+    transition: transform .3s ease;
+}
+
+
+/* descrição / informações */
+
+.trabalho-info,
+.work-info,
+.work-meta {
+    align-self: end;
+
+    font-size: 10px;
+    line-height: 1.35;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+
+    opacity: .65;
+}
+
+
+/* =========================================================
+   HOVER — O TRABALHO "SAI" DA LISTA
+   ========================================================= */
+
+.trabalho:hover,
+.work:hover,
+.work-item:hover {
+    padding-left: 18px;
+    padding-right: 18px;
+
+    background: var(--black);
+    color: var(--cream);
+}
+
+.trabalho:hover .trabalho-title,
+.work:hover .work-title {
+    transform: translateX(8px);
+}
+
+.trabalho:hover .trabalho-info,
+.work:hover .work-info,
+.work-item:hover .work-meta {
+    opacity: .8;
+}
+
+
+/* =========================================================
+   IMAGENS
+   ========================================================= */
+
+.trabalho img,
+.work img,
+.work-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    filter: grayscale(100%);
+
+    transition:
+        filter .4s ease,
+        transform .4s ease;
+}
+
+.trabalho:hover img,
+.work:hover img,
+.work-item:hover img {
+    filter: grayscale(0%);
+}
+
+
+/* =========================================================
+   ÁREA DE IMAGEM / PREVIEW
+   ========================================================= */
+
+.trabalho-image,
+.work-image,
+.work-preview {
+    overflow: hidden;
+}
+
+.trabalho-image img,
+.work-image img,
+.work-preview img {
+    transition: transform .5s cubic-bezier(.2,.8,.2,1);
+}
+
+.trabalho:hover .trabalho-image img,
+.work:hover .work-image img,
+.work-item:hover .work-preview img {
+    transform: scale(1.035);
+}
+
+
+/* =========================================================
+   TAGS / METADADOS
+   ========================================================= */
+
+.trabalho-tags,
+.work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.trabalho-tags span,
+.work-tags span {
+    display: inline-block;
+
+    padding: 5px 8px;
+
+    border: 1px solid currentColor;
+
+    font-size: 8px;
+    line-height: 1;
+
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+
+/* =========================================================
+   LINHAS EXTRAS
+   ========================================================= */
+
+.trabalho::before,
+.work::before,
+.work-item::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 0;
+    height: 1px;
+
+    background: var(--black);
+
+    transition: width .35s ease;
+}
+
+.trabalho:hover::before,
+.work:hover::before,
+.work-item:hover::before {
+    width: 100%;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.trabalhos-footer,
+.works-footer {
+    margin-top: 12vh;
+    padding:
+        20px
+        clamp(24px, 7vw, 110px)
+        50px;
+
+    border-top: 1px solid rgba(16, 11, 9, .3);
+
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .trabalhos-intro,
+    .works-intro {
+        min-height: 68vh;
+        padding:
+            12vh
+            24px
+            8vh;
+    }
+
+    .trabalhos-intro h1,
+    .works-intro h1 {
+        font-size: clamp(70px, 22vw, 150px);
+    }
+
+    .trabalhos-list,
+    .works-list {
+        margin: 0 24px;
+    }
+
+    .trabalho,
+    .work,
+    .work-item {
+        grid-template-columns: 35px 1fr;
+        gap: 15px;
+    }
+
+    .trabalho-info,
+    .work-info,
+    .work-meta {
+        grid-column: 2;
+        margin-top: 8px;
+    }
+
+    .trabalho-title,
+    .work-title {
+        font-size: clamp(32px, 10vw, 58px);
+    }
+}
+
+
+/* =========================================================
+   CABEÇALHO COMUNA
+   ========================================================= */
+
+.site-header {
+    position: relative;
+    z-index: 20;
+
+    height: 74px;
+    padding: 0 clamp(20px, 3vw, 42px);
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    background: var(--cream) !important;
+    color: var(--black) !important;
+
+    border-bottom: 1px solid rgba(16, 11, 9, .25);
+    backdrop-filter: none !important;
+}
+
+.return-dots {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: max-content;
+}
+
+.return-dots span {
+    width: 22px;
+    height: 22px;
+    display: block;
+    border-radius: 50%;
+    transition: transform .25s ease, opacity .25s ease;
+}
+
+.return-dots span:nth-child(1) {
+    background: var(--black);
+}
+
+.return-dots span:nth-child(2) {
+    background: var(--black);
+}
+
+.return-dots span:nth-child(3) {
+    background: var(--black);
+}
+
+.return-dots span:hover {
+    transform: scale(.78);
+    opacity: .6;
+}
+
+.header-comuna {
+    justify-self: center;
+    color: var(--black) !important;
+}
+
+.header-section {
+    justify-self: end;
+    color: var(--black) !important;
+    font-size: 9px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    opacity: .6;
+}

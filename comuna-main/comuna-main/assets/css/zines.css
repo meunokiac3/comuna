@@ -1,0 +1,3159 @@
+/* =====================================================
+   VARIÁVEIS
+===================================================== */
+
+:root {
+
+    --black: #100b09;
+
+    --cream: #fff3df;
+
+    --cream-dark: #e8ddcb;
+
+    --racing-red: #EC1F20;
+
+    --baby-pink: #FFAAC7;
+
+    --chartreuse: #C0FF00;
+
+    --indigo-ink: #2C1B80;
+
+    --wine-plum: #4F2730;
+
+}
+
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    margin: 0;
+
+    background: var(--cream);
+
+    color: var(--black);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-weight: 400;
+
+}
+
+
+a {
+
+    color: none;
+
+    text-decoration: none;
+
+}
+
+
+
+/* =====================================================
+   ZINES
+===================================================== */
+
+.zines-page {
+
+    min-height: 100vh;
+
+    background: var(--cream);
+
+    color: var(--cream);
+
+    overflow-x: hidden;
+
+}
+
+
+
+/* =====================================================
+   CABEÇALHO
+===================================================== */
+
+.zines-header {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 80px;
+
+    padding: 28px 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 100;
+
+    pointer-events: none;
+
+    border-bottom:
+        1px solid
+        rgba(0, 0, 0, 0.18);
+
+}
+
+
+.zines-header > * {
+
+    pointer-events: auto;
+
+}
+
+
+.site-dots {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 8px;
+
+    margin-left: -8px;
+
+}
+
+
+.site-dots span {
+
+    display: block;
+
+    width: 26px;
+
+    height: 26px;
+
+    border-radius: 50%;
+
+    background: var(--cream);
+
+    transition: opacity 300ms ease;
+
+}
+
+
+.section-title {
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+    opacity: .6;
+
+}
+
+.featured-track {
+    display: flex;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    gap: 7vw;
+
+    padding: 20px 7vw 40px;
+
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+}
+
+.featured-track::-webkit-scrollbar {
+    display: none;
+}
+
+.featured-zine {
+    flex: 0 0 min(86vw, 1180px);
+}
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.zines-intro {
+
+    min-height: 95vh;
+
+    padding:
+        50px 7vw 120px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    grid-template-rows:
+        auto 1fr;
+
+    gap: 85px;
+
+    align-items: start;
+
+}
+
+
+.intro-title {
+
+    grid-column: 1 / -1;
+
+    font-size:
+        clamp(70px, 14vw, 190px);
+
+    line-height: .40;
+
+    letter-spacing: -.09em;
+
+    font-weight: 400;
+
+    margin-top: 5vh;
+
+}
+
+
+.intro-text {
+
+    max-width: 250px;
+
+    font-size: 15px;
+
+    line-height: 1.35;
+
+}
+
+
+.intro-text p + p {
+
+    margin-top: 20px;
+
+}
+
+
+
+/* =====================================================
+   EDIÇÕES EM DESTAQUE
+===================================================== */
+
+.featured-zines {
+
+    position: relative;
+
+    padding:
+        0 0 17vh;
+
+}
+
+
+.featured-heading {
+
+    margin:
+        0 7vw 18px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: baseline;
+
+    padding-bottom: 14px;
+
+    border-bottom: none;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+    opacity: .65;
+
+}
+
+
+
+/* =====================================================
+   SCROLL HORIZONTAL
+===================================================== */
+
+.featured-track {
+
+    display: flex;
+
+    gap: clamp(32px, 5vw, 80px);
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    padding:
+        20px max(5vw, calc((100vw - 1400px) / 2)) 40px;
+
+    scroll-snap-type: x mandatory;
+
+    scroll-padding-left: max(5vw, calc((100vw - 1400px) / 2));
+
+    overscroll-behavior-x: contain;
+
+    scrollbar-width: none;
+
+}
+
+
+.featured-track::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+
+
+
+/* =====================================================
+   CADA EDIÇÃO
+===================================================== */
+
+.featured-zine {
+    --feature-color: var(--racing-red);
+
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 min(90vw, 1400px);
+    scroll-snap-align: start;
+    align-items: center;
+}
+
+.featured-zine[data-color="racing-red"],
+.featured-zine[data-color="red"] {
+    --feature-color: var(--racing-red);
+}
+
+.featured-zine[data-color="pink"] {
+    --feature-color: var(--baby-pink);
+}
+
+.featured-zine[data-color="green"],
+.featured-zine[data-color="chartreuse"] {
+    --feature-color: var(--chartreuse);
+}
+
+.featured-zine[data-color="orange"] {
+    --feature-color: var(--orange);
+}
+
+.featured-zine[data-color="indigo"] {
+    --feature-color: var(--indigo-ink);
+}
+
+.featured-zine[data-color="wine"] {
+    --feature-color: var(--wine-plum);
+}
+
+
+/* =====================================================
+   IDENTIFICAÇÃO
+===================================================== */
+
+.featured-index {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    opacity: .65;
+}
+
+
+/* =====================================================
+   OBJETO EDITORIAL
+===================================================== */
+
+.featured-object {
+    position: relative;
+    width: 100%;
+    max-width: min(90vw, 1400px);
+    min-height: min(80vh, 860px);
+    margin-inline: auto;
+    aspect-ratio: auto;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+    background: var(--cream);
+    color: var(--black);
+}
+
+
+/* =====================================================
+   CAPA — ESQUERDA
+===================================================== */
+
+.featured-cover {
+    position: relative;
+    width: 100%;
+    min-height: min(72vh, 760px);
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   FUNDO COLORIDO DA CAPA
+===================================================== */
+
+.cover-color {
+    position: absolute;
+    width: 62%;
+    height: 72%;
+    background: var(--feature-color);
+    z-index: 0;
+}
+
+
+/* =====================================================
+   CAPA PRETA
+===================================================== */
+
+.cover-placeholder {
+    position: relative;
+    z-index: 1;
+
+    width: 76%;
+    height: 89%;
+    max-width: none;
+    aspect-ratio: 2 / 3;
+
+    background: var(--black);
+    color: var(--cream);
+
+    padding: 22px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: 12px 14px 0 var(--feature-color);
+}
+
+
+/* =====================================================
+   IMAGEM DA CAPA
+===================================================== */
+
+.featured-cover > img {
+    position: relative;
+    z-index: 1;
+    display: block;
+
+    width: 76%;
+    height: 89%;
+
+    object-fit: contain;
+    object-position: center;
+
+    box-shadow: 12px 14px 0 var(--feature-color);
+}
+
+
+
+/* =====================================================
+   TEXTO DA CAPA
+===================================================== */
+
+.cover-placeholder span {
+
+    font-size:
+        9px;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .12em;
+
+    opacity:
+        .7;
+
+}
+
+
+.cover-placeholder strong {
+
+    font-size:
+        clamp(
+            35px,
+            5vw,
+            75px
+        );
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        -.08em;
+
+    line-height:
+        .8;
+
+    word-break:
+        break-all;
+
+}
+
+
+.cover-placeholder small {
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        .1em;
+
+}
+
+
+/* =====================================================
+   INFORMAÇÃO — DIREITA
+===================================================== */
+
+.featured-information {
+
+    position:
+        relative;
+
+    min-height:
+        min(80vh, 860px);
+
+    padding:
+        55px 85px 45px 45px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    border-left:
+        1px solid
+        rgba(16, 11, 9, .35);
+
+}
+
+
+.featured-top {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+}
+
+
+.volume-label {
+
+    font-size:
+        10px;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .1em;
+
+    margin-bottom:
+        30px;
+
+}
+
+
+.featured-information h2 {
+
+    max-width:
+        500px;
+
+    font-size:
+        clamp(
+            48px,
+            7vw,
+            105px
+        );
+
+    line-height:
+        .8;
+
+    letter-spacing:
+        -.08em;
+
+    font-weight:
+        400;
+
+}
+
+
+.featured-middle {
+
+    max-width:
+        410px;
+
+}
+
+
+.featured-middle p {
+
+    font-size:
+        16px;
+
+    line-height:
+        1.4;
+
+    margin-bottom:
+        35px;
+
+}
+
+
+.featured-data {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        10px 22px;
+
+    font-size:
+        10px;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .06em;
+
+    opacity:
+        .65;
+
+}
+
+
+.featured-bottom {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        flex-start;
+
+    gap:
+        10px;
+
+}
+
+
+.featured-bottom a {
+
+    font-size:
+        13px;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .05em;
+
+    border-bottom:
+        1px solid
+        var(--black);
+
+    padding-bottom:
+        3px;
+
+    transition:
+        padding-left 250ms ease;
+
+}
+
+
+.featured-bottom a:hover {
+
+    padding-left:
+        8px;
+
+}
+
+
+/* =====================================================
+   LOMBADA COLORIDA
+===================================================== */
+
+.featured-spine {
+
+    position: absolute;
+
+    top: 0;
+
+    right: 0;
+
+    width: 46px;
+
+    height: 100%;
+
+    background:
+        var(--feature-color);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 20px 0;
+
+}
+
+
+.featured-spine > span:first-child {
+
+    writing-mode:
+        vertical-rl;
+
+    transform:
+        rotate(180deg);
+
+    font-size: 9px;
+
+    letter-spacing: .08em;
+
+    text-transform: uppercase;
+
+}
+
+
+.featured-spine > span:nth-child(2) {
+
+    font-size: 16px;
+
+}
+
+
+.spine-dots {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.spine-dots i {
+
+    width: 16px;
+
+    height: 16px;
+
+    border-radius: 50%;
+
+    background:
+        var(--black);
+
+}
+
+/* =====================================================
+   INDICAÇÃO DE SCROLL
+===================================================== */
+
+.featured-scroll-hint {
+
+    margin:
+        5px 7vw 0;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+    opacity: .55;
+
+}
+
+
+
+/* =====================================================
+   ARQUIVO
+===================================================== */
+
+.zines-archive {
+
+    padding:
+        0 7vw 15vh;
+
+}
+
+
+.archive-heading {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: baseline;
+
+    padding-bottom: 15px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 243, 223, .3);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+    opacity: .65;
+
+}
+
+
+.folder-list {
+
+    margin-top: 35px;
+
+}
+
+
+
+/* =====================================================
+   VOLUMES / PASTAS
+===================================================== */
+
+.zine-volume {
+
+    --volume-color:
+        var(--cream);
+
+    position: relative;
+
+    margin-top: 0;
+
+    color: var(--black);
+
+}
+
+
+.zine-volume:nth-child(2) {
+
+    margin-left:
+        3vw;
+
+}
+
+
+.zine-volume:nth-child(3) {
+
+    margin-left:
+        7vw;
+
+}
+
+
+.zine-volume:nth-child(4) {
+
+    margin-left:
+        2vw;
+
+}
+
+
+.zine-volume:nth-child(5) {
+
+    margin-left:
+        9vw;
+
+}
+
+
+
+/* =====================================================
+   ABA / PASTA
+===================================================== */
+
+.volume-tab {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 82px;
+
+    padding:
+        0 28px;
+
+    border: none;
+
+    border-radius: 0;
+
+    background:
+        var(--volume-color);
+
+    color:
+        var(--black);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    text-align: left;
+
+    transition:
+        min-height 450ms cubic-bezier(.16, 1, .3, 1),
+        padding 300ms ease,
+        transform 450ms cubic-bezier(.16, 1, .3, 1);
+
+}
+
+
+.volume-tab::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -18px;
+
+    left: 0;
+
+    width: 155px;
+
+    height: 18px;
+
+    background:
+        var(--volume-color);
+
+}
+
+
+.volume-tab:hover {
+
+    padding-left: 38px;
+
+}
+
+
+.zine-volume.is-open
+.volume-tab {
+
+    min-height: 100px;
+
+}
+
+
+
+/* =====================================================
+   NÚMERO
+===================================================== */
+
+.volume-number {
+
+    font-size:
+        clamp(24px, 3vw, 42px);
+
+    letter-spacing: -.06em;
+
+}
+
+
+
+/* =====================================================
+   TÍTULO
+===================================================== */
+
+.volume-title {
+
+    position: absolute;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+}
+
+
+
+/* =====================================================
+   TRÊS PONTOS
+===================================================== */
+
+.volume-dots {
+
+    display: flex;
+
+    gap: 5px;
+
+    align-items: center;
+
+}
+
+
+.volume-dots i {
+
+    display: block;
+
+    width: 11px;
+
+    height: 11px;
+
+    border-radius: 50%;
+
+    background:
+        var(--black);
+
+}
+
+
+
+/* =====================================================
+   CONTEÚDO DA PASTA
+===================================================== */
+
+.archive-expanded {
+
+    display: grid;
+
+    grid-template-columns:
+        .6fr 1fr 1.5fr 1fr .8fr;
+
+    min-height: 0;
+
+    height: 0;
+
+    overflow: hidden;
+
+    background:
+        var(--volume-color);
+
+    opacity: 0;
+
+    transition:
+        height 550ms cubic-bezier(.16, 1, .3, 1),
+        opacity 250ms ease;
+
+}
+
+
+.zine-volume.is-open
+.archive-expanded {
+
+    height:
+        min(330px, 35vh);
+
+    opacity: 1;
+
+}
+
+
+
+/* =====================================================
+   REGISTROS
+===================================================== */
+
+.archive-record {
+
+    min-width: 0;
+
+    padding:
+        30px 25px;
+
+    border-right:
+        1px solid
+        rgba(16, 11, 9, .3);
+
+}
+
+
+.record-label {
+
+    display: block;
+
+    margin-bottom: 18px;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .1em;
+
+    opacity: .55;
+
+}
+
+
+.archive-record strong {
+
+    font-size: 65px;
+
+    font-weight: 400;
+
+    letter-spacing: -.08em;
+
+}
+
+
+.archive-record span:not(.record-label) {
+
+    font-size: 14px;
+
+}
+
+
+.archive-record p {
+
+    max-width: 300px;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+}
+
+
+.record-data {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    font-size: 11px;
+
+}
+
+
+
+/* =====================================================
+   AÇÕES DO ARQUIVO
+===================================================== */
+
+.archive-record-action {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    border-right: none;
+
+}
+
+
+.archive-record-action a {
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .06em;
+
+    border-bottom:
+        1px solid
+        var(--black);
+
+    padding-bottom: 3px;
+
+    transition:
+        padding-left 250ms ease;
+
+}
+
+
+.archive-record-action a:hover {
+
+    padding-left: 8px;
+
+}
+
+
+
+/* =====================================================
+   CORES DAS PASTAS — ARQUIVO
+===================================================== */
+
+/* 01 — PRETO E CREME */
+.zine-volume[data-color="red"] {
+    --volume-color: #100b09;
+    --volume-ink: #fff3df;
+}
+
+/* 02 — VERMELHO E PRETO */
+.zine-volume[data-color="pink"] {
+    --volume-color: #ec1f20;
+    --volume-ink: #100b09;
+}
+
+/* 03 — LARANJA E CREME */
+.zine-volume[data-color="green"] {
+    --volume-color: #f36b21;
+    --volume-ink: #fff3df;
+}
+
+/* DEMAIS EDIÇÕES */
+.zine-volume[data-color="indigo"] {
+    --volume-color: var(--indigo-ink);
+    --volume-ink: var(--cream);
+}
+
+.zine-volume[data-color="wine"] {
+    --volume-color: var(--wine-plum);
+    --volume-ink: var(--cream);
+}
+
+/* APLICAÇÃO DAS CORES */
+.zine-volume {
+    color: var(--volume-ink, var(--black));
+}
+
+.zine-volume .volume-tab {
+    background: var(--volume-color);
+    color: var(--volume-ink, var(--black));
+}
+
+.zine-volume .volume-dots i {
+    background: var(--volume-ink, var(--black));
+}
+
+
+/* =====================================================
+   RODAPÉ
+===================================================== */
+
+.zines-footer {
+
+    margin:
+        5vh 7vw 8vh;
+
+    padding-top:
+        25px;
+
+    border-top:
+        1px solid
+        rgba(255, 243, 223, .3);
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+}
+
+
+.zines-footer a {
+
+    transition:
+        opacity 250ms ease;
+
+}
+
+
+.zines-footer a:hover {
+
+    opacity: .55;
+
+}
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .featured-object {
+
+        width:
+            100%;
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .featured-cover {
+
+        width:
+            100%;
+
+        min-width:
+            0;
+
+        min-height:
+            min(62vw, 520px);
+
+    }
+
+
+    .featured-information {
+
+        width:
+            100%;
+
+        min-width:
+            0;
+
+        min-height:
+            500px;
+
+        padding:
+            45px 70px 40px 35px;
+
+        border-left:
+            none;
+
+        border-top:
+            1px solid
+            rgba(16, 11, 9, .3);
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+
+    .zines-header {
+
+        padding:
+            22px 20px;
+
+    }
+
+
+    .zines-intro {
+
+        min-height:
+            85vh;
+
+        padding:
+            110px 8vw 70px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 50px;
+
+    }
+
+
+    .intro-title {
+
+        font-size:
+            23vw;
+
+    }
+
+
+    .intro-text {
+
+        max-width:
+            270px;
+
+    }
+
+
+
+    /* EDIÇÃO */
+
+    .featured-heading {
+
+        margin-left:
+            8vw;
+
+        margin-right:
+            8vw;
+
+    }
+
+
+    .featured-track {
+
+        padding-left:
+            8vw;
+
+        padding-right:
+            8vw;
+
+        gap:
+            10vw;
+
+    }
+
+
+    .featured-zine {
+
+        flex-basis:
+            88vw;
+
+    }
+
+
+    .featured-object {
+
+        grid-template-columns:
+            1fr;
+
+        min-height:
+            auto;
+
+    }
+
+
+    .featured-cover {
+
+        min-height:
+            100vw;
+
+        padding:
+            0;
+
+    }
+
+
+    .cover-placeholder {
+
+        width:
+            78%;
+
+        max-width:
+            none;
+
+        height:
+            auto;
+
+        aspect-ratio:
+            2 / 3;
+
+    }
+
+
+    .featured-information {
+
+        min-height:
+            540px;
+
+        padding:
+            40px 60px 40px 28px;
+
+        border-left:
+            none;
+
+        border-top:
+            1px solid
+            rgba(16, 11, 9, .3);
+
+    }
+
+
+    .featured-information h2 {
+
+        font-size:
+            15vw;
+
+    }
+
+
+    .featured-spine {
+
+        width:
+            60px;
+
+    }
+
+
+
+    /* ARQUIVO */
+
+    .zines-archive {
+
+        padding:
+            0 5vw 12vh;
+
+    }
+
+
+    .archive-expanded {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        height: 0;
+
+    }
+
+
+    .zine-volume.is-open
+    .archive-expanded {
+
+        height:
+            auto;
+
+    }
+
+
+    .archive-record {
+
+        min-height:
+            150px;
+
+    }
+
+
+    .archive-record-action {
+
+        grid-column:
+            1 / -1;
+
+        min-height:
+            110px;
+
+    }
+
+
+    .volume-title {
+
+        display:
+            none;
+
+    }
+
+
+    .zine-volume:nth-child(2),
+    .zine-volume:nth-child(3),
+    .zine-volume:nth-child(4),
+    .zine-volume:nth-child(5) {
+
+        margin-left:
+            0;
+
+    }
+
+
+    .volume-tab {
+
+        min-height:
+            70px;
+
+        padding:
+            0 18px;
+
+    }
+
+
+    .volume-tab::before {
+
+        width:
+            100px;
+
+        height:
+            14px;
+
+        top:
+            -14px;
+
+    }
+
+
+    .volume-dots i {
+
+        width:
+            2ch;
+
+        height:
+            26px;
+
+    }
+
+
+    .zines-footer {
+
+        margin:
+            5vh 8vw 7vh;
+
+    }
+
+}
+/* =====================================================
+   COMUNA — ZINES / AJUSTE EDITORIAL
+   ===================================================== */
+
+
+/* =====================================================
+   PALETA GERAL
+   ===================================================== */
+
+.zines-page {
+    background: var(--cream) !important;
+    color: var(--black) !important;
+}
+
+
+/* =====================================================
+   CABEÇALHO
+   SEM FAIXA PRETA
+   ===================================================== */
+
+.zines-header {
+    height: 74px !important;
+
+    padding:
+        0
+        clamp(20px, 3vw, 42px) !important;
+
+    background:
+        var(--cream) !important;
+
+    color:
+        var(--black) !important;
+
+    border-bottom:
+        1px solid
+        rgba(16, 11, 9, .25) !important;
+
+    backdrop-filter:
+        none !important;
+
+}
+
+
+/* =====================================================
+   TÍTULO DO CABEÇALHO
+   ===================================================== */
+
+.section-title {
+
+    color:
+        var(--black) !important;
+
+    font-size:
+        9px !important;
+
+    letter-spacing:
+        .18em !important;
+
+    text-transform:
+        uppercase;
+
+    opacity:
+        .65;
+
+}
+
+
+/* =====================================================
+   TRÊS PONTOS DO CABEÇALHO
+   ===================================================== */
+
+.site-dots {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        5px;
+
+    width:
+        auto;
+
+    height:
+        22px;
+
+    padding:
+        0;
+
+    margin-left:
+        0;
+
+}
+
+
+.site-dots span {
+
+    display:
+        block;
+
+    width:
+        22px !important;
+
+    height:
+        22px !important;
+
+    flex:
+        0 0 22px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--black) !important;
+
+    opacity:
+        1 !important;
+
+    transition:
+        transform 180ms ease,
+        opacity 180ms ease;
+
+}
+
+
+/* efeito dos três pontos */
+
+.site-dots span:hover {
+
+    transform:
+        scale(.82);
+
+    opacity:
+        .65 !important;
+
+}
+
+
+/* =====================================================
+   INTRO
+   ===================================================== */
+
+.zines-intro {
+
+    min-height:
+        100svh !important;
+
+    padding:
+        clamp(150px, 20vh, 220px)
+        7vw
+        100px !important;
+
+    display:
+        flex !important;
+
+    flex-direction:
+        column !important;
+
+    align-items:
+        flex-start !important;
+
+    justify-content:
+        flex-start !important;
+
+    gap:
+        clamp(55px, 8vh, 100px) !important;
+
+    position:
+        relative;
+
+}
+
+
+/* identificação */
+
+.zines-intro::before {
+
+    content:
+        'PUBLICAÇÃO / 001—005';
+
+    position:
+        absolute;
+
+    top:
+        clamp(105px, 13vh, 145px);
+
+    left:
+        7vw;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        .16em;
+
+    color:
+        var(--black);
+
+    opacity:
+        .5;
+
+}
+
+
+/* =====================================================
+   TÍTULO uuuuuuuuuuu
+   ===================================================== */
+
+.intro-title {
+
+    font-family:
+        Georgia,
+        'Times New Roman',
+        serif !important;
+
+    font-style:
+        italic;
+
+    font-weight:
+        400;
+
+    font-size:
+        clamp(
+            72px,
+            10vw,
+            160px
+        ) !important;
+
+    line-height:
+        .78 !important;
+
+    letter-spacing:
+        -.09em !important;
+
+    margin:
+        0 !important;
+
+    transform:
+        none !important;
+
+    color:
+        var(--black) !important;
+
+}
+
+
+/* =====================================================
+   TEXTO INTRO
+   ===================================================== */
+
+.intro-text {
+
+    max-width:
+        42ch !important;
+
+    font-size:
+        clamp(
+            14px,
+            1.15vw,
+            17px
+        ) !important;
+
+    line-height:
+        1.5 !important;
+
+    color:
+        var(--black) !important;
+
+    margin:
+        0 !important;
+
+}
+
+
+.intro-text p + p {
+
+    margin-top:
+        18px !important;
+
+}
+
+
+/* =====================================================
+   PUBLICAÇÕES
+   ===================================================== */
+
+.featured-zines {
+
+    padding-bottom:
+        13vh !important;
+
+}
+
+
+/* =====================================================
+   TÍTULO DA SEÇÃO
+   ===================================================== */
+
+.featured-heading {
+
+    margin:
+        0 7vw 0 !important;
+
+    padding:
+        0 0 14px !important;
+
+    border-bottom:
+        1px solid
+        rgba(16, 11, 9, .35) !important;
+
+    color:
+        var(--black) !important;
+
+    font-size:
+        10px;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .08em;
+
+    opacity:
+        .7;
+
+}
+
+
+/* =====================================================
+   CADA PUBLICAÇÃO
+   LINHA ANTES DA CAPA
+   ===================================================== */
+
+.featured-zine {
+
+    position:
+        relative;
+
+    min-width:
+        min(90vw, 1400px) !important;
+
+    padding-top:
+        16px;
+
+}
+
+
+/*
+   A linha fica imediatamente antes
+   de cada publicação.
+*/
+
+.featured-zine::before {
+
+    content:
+        '';
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        1px;
+
+    background:
+        rgba(16, 11, 9, .35);
+
+}
+
+
+/* =====================================================
+   IDENTIFICAÇÃO DA PUBLICAÇÃO
+   ===================================================== */
+
+.featured-index {
+
+    width:
+        100%;
+
+    margin:
+        0 0 10px !important;
+
+    padding-bottom:
+        9px;
+
+    border-bottom:
+        1px solid
+        rgba(16, 11, 9, .25);
+
+    color:
+        var(--black);
+
+    font-size:
+        10px;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        .08em;
+
+    opacity:
+        .7;
+
+}
+
+
+/* =====================================================
+   TRACK
+   ===================================================== */
+
+.featured-track {
+
+    gap:
+        clamp(
+            32px,
+            5vw,
+            80px
+        ) !important;
+
+    padding:
+        25px
+        max(5vw, calc((100vw - 1400px) / 2))
+        70px !important;
+
+}
+
+
+/* =====================================================
+   OBJETO EDITORIAL
+   ===================================================== */
+
+.featured-object {
+
+    position:
+        relative;
+
+    width:
+        100% !important;
+
+    max-width:
+        min(88vw, 1360px) !important;
+
+    min-height:
+        min(76vh, 800px) !important;
+
+    margin-inline:
+        auto;
+
+    background:
+        var(--feature-color) !important;
+
+    color:
+        var(--black) !important;
+
+}
+
+
+/* =====================================================
+   CORES
+   ===================================================== */
+
+.featured-zine[data-color="racing-red"]
+.featured-object {
+
+    background:
+        var(--racing-red) !important;
+
+}
+
+
+.featured-zine[data-color="pink"]
+.featured-object {
+
+    background:
+        var(--baby-pink) !important;
+
+}
+
+
+.featured-zine[data-color="green"]
+.featured-object {
+
+    background:
+        var(--chartreuse) !important;
+
+}
+
+
+.featured-zine[data-color="indigo"]
+.featured-object {
+
+    background:
+        var(--indigo-ink) !important;
+
+    color:
+        var(--cream) !important;
+
+}
+
+
+.featured-zine[data-color="wine"]
+.featured-object {
+
+    background:
+        var(--wine-plum) !important;
+
+    color:
+        var(--cream) !important;
+
+}
+
+
+/* =====================================================
+   CAPA
+   ===================================================== */
+
+.featured-cover {
+
+    min-height:
+        min(76vh, 800px) !important;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-right:
+        1px solid
+        rgba(16, 11, 9, .35);
+
+}
+
+
+/* =====================================================
+   CAPA PRETA
+   ligeiramente menor
+   ===================================================== */
+
+.cover-placeholder {
+
+    width:
+        73% !important;
+
+    height:
+        86% !important;
+
+}
+
+
+/* =====================================================
+   INFORMAÇÃO
+   ===================================================== */
+
+.featured-information {
+
+    min-height:
+        min(76vh, 800px) !important;
+
+    padding:
+        clamp(40px, 5vw, 65px)
+        clamp(55px, 6vw, 85px)
+        45px
+        clamp(30px, 4vw, 55px) !important;
+
+    border-left:
+        none !important;
+
+}
+
+
+/* =====================================================
+   LINHA ENTRE CAPA E INFORMAÇÃO
+   ===================================================== */
+
+.featured-information::before {
+
+    content:
+        '';
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        45px;
+
+    bottom:
+        45px;
+
+    width:
+        1px;
+
+    background:
+        rgba(16, 11, 9, .35);
+
+}
+
+
+/* =====================================================
+   TÍTULO DA PUBLICAÇÃO
+   ===================================================== */
+
+.featured-information h2 {
+
+    max-width:
+        500px;
+
+    font-size:
+        clamp(
+            42px,
+            5vw,
+            76px
+        ) !important;
+
+    line-height:
+        .82 !important;
+
+}
+
+
+/* =====================================================
+   LOMBADA
+   ===================================================== */
+
+.featured-spine {
+
+    width:
+        46px;
+
+}
+
+
+/* =====================================================
+   PONTOS DA LOMBADA
+   ===================================================== */
+
+.spine-dots {
+
+    gap:
+        5px;
+
+}
+
+
+.spine-dots i {
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--black);
+
+    transition:
+        transform 180ms ease,
+        opacity 180ms ease;
+
+}
+
+
+.spine-dots i:hover {
+
+    transform:
+        scale(1.35);
+
+}
+
+
+/* =====================================================
+   INDICAÇÃO DE SCROLL
+   ===================================================== */
+
+.featured-scroll-hint {
+
+    margin:
+        5px 7vw 0;
+
+    padding-top:
+        12px;
+
+    border-top:
+        1px solid
+        rgba(16, 11, 9, .3);
+
+}
+
+
+/* =====================================================
+   ARQUIVO
+   ===================================================== */
+
+.zines-archive {
+
+    padding:
+        5vh 7vw 15vh !important;
+
+}
+
+
+.archive-heading {
+
+    padding-bottom:
+        15px;
+
+    border-bottom:
+        1px solid
+        rgba(16, 11, 9, .35) !important;
+
+    color:
+        var(--black);
+
+}
+
+
+/* =====================================================
+   RODAPÉ
+   ===================================================== */
+
+.zines-footer {
+
+    border-top:
+        1px solid
+        rgba(16, 11, 9, .3) !important;
+
+    color:
+        var(--black);
+
+}
+
+/* =========================================================
+   ITEM ABERTO
+========================================================= */
+
+.arquivo-item,
+.archive-item,
+.fragment,
+.archive-card {
+
+    cursor: pointer;
+
+}
+
+
+.arquivo-item.is-open,
+.archive-item.is-open,
+.fragment.is-open,
+.archive-card.is-open {
+
+    z-index: 10;
+
+    background:
+        var(--black);
+
+    color:
+        var(--cream);
+
+    box-shadow:
+        16px 18px 0
+        var(--chartreuse);
+
+}
+
+
+/* =========================================================
+   CONTEÚDO EXPANDIDO
+========================================================= */
+
+.arquivo-item.is-open p,
+.archive-item.is-open p,
+.fragment.is-open p,
+.archive-card.is-open p {
+
+    max-width:
+        700px;
+
+}
+
+
+.arquivo-item.is-open img,
+.archive-item.is-open img,
+.fragment.is-open img,
+.archive-card.is-open img {
+
+    filter:
+        grayscale(0);
+
+    transform:
+        scale(1);
+
+}
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+    .zines-header {
+
+        padding:
+            0 20px !important;
+
+    }
+
+
+    .zines-intro {
+
+        min-height:
+            90svh !important;
+
+        padding:
+            125px
+            8vw
+            80px !important;
+
+        gap:
+            55px !important;
+
+    }
+
+
+    .zines-intro::before {
+
+        top:
+            92px;
+
+        left:
+            8vw;
+
+    }
+
+
+    .intro-title {
+
+        font-size:
+            22vw !important;
+
+    }
+
+
+    .featured-heading {
+
+        margin-left:
+            8vw !important;
+
+        margin-right:
+            8vw !important;
+
+    }
+
+
+    .featured-track {
+
+        padding-left:
+            8vw !important;
+
+        padding-right:
+            8vw !important;
+
+        gap:
+            10vw !important;
+
+    }
+
+
+    .featured-zine {
+
+        flex-basis:
+            88vw;
+
+        padding-top:
+            13px;
+
+    }
+
+
+    .featured-object {
+
+        grid-template-columns:
+            1fr !important;
+
+        min-height:
+            auto !important;
+
+    }
+
+
+    .featured-cover {
+
+        min-height:
+            95vw !important;
+
+        border-right:
+            none;
+
+        border-bottom:
+            1px solid
+            rgba(16, 11, 9, .35);
+
+    }
+
+
+    .cover-placeholder {
+
+        width:
+            75% !important;
+
+    }
+
+
+    .featured-information {
+
+        min-height:
+            500px !important;
+
+        padding:
+            45px
+            60px
+            45px
+            28px !important;
+
+    }
+
+
+    .featured-information::before {
+
+        display:
+            none;
+
+    }
+
+
+    .featured-spine {
+
+        width:
+            52px;
+
+    }
+
+}
+
+
+/* =========================================================
+   EDIÇÕES — SCROLL HORIZONTAL
+   ========================================================= */
+
+.featured-zines {
+
+    position: relative;
+
+    width: 100%;
+
+    overflow: visible;
+
+}
+
+
+/* =========================================================
+   FAIXA HORIZONTAL
+   ========================================================= */
+
+.featured-track {
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: flex-start;
+
+    width: 100%;
+    max-width: 100%;
+
+    gap: clamp(
+        32px,
+        5vw,
+        80px
+    );
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding:
+        20px
+        max(
+            5vw,
+            calc((100vw - 1400px) / 2)
+        )
+        50px;
+
+    /*
+     * Scroll suave, mas sem aquela
+     * sensação de "pular" violentamente.
+     */
+
+    scroll-behavior: smooth;
+
+    scroll-snap-type: x proximity;
+
+    scroll-padding-left:
+        max(
+            5vw,
+            calc((100vw - 1400px) / 2)
+        );
+
+    /*
+     * Impede que o movimento horizontal
+     * vaze para o restante da página.
+     */
+
+    overscroll-behavior-x: contain;
+
+    /*
+     * Mantém o scroll horizontal
+     * somente nessa área.
+     */
+
+    /*
+     * Esconde a barra de scroll.
+     */
+
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling: touch;
+
+}
+
+
+/* Chrome / Edge / Safari */
+
+.featured-track::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   QUANDO ESTÁ ARRASTANDO
+   ========================================================= */
+
+/* =========================================================
+   CADA EDIÇÃO
+   ========================================================= */
+
+.featured-zine {
+
+    flex:
+        0 0 min(
+            90vw,
+            1400px
+        );
+
+    width:
+        min(
+            90vw,
+            1400px
+        );
+
+    scroll-snap-align: start;
+
+}
+
+
+/* =========================================================
+   ÍNDICE
+   ========================================================= */
+
+.featured-index {
+
+    width: 100%;
+
+}
+
+
+/* =========================================================
+   CORES DAS EDIÇÕES
+   ========================================================= */
+
+.featured-zine[data-color="racing-red"] {
+
+    --feature-color:
+        var(--racing-red);
+
+}
+
+
+.featured-zine[data-color="pink"] {
+
+    --feature-color:
+        var(--baby-pink);
+
+}
+
+
+.featured-zine[data-color="green"] {
+
+    --feature-color:
+        var(--green-chartreuse);
+
+}
+
+
+.featured-zine[data-color="indigo"] {
+
+    --feature-color:
+        var(--indigo-ink);
+
+}
+
+
+.featured-zine[data-color="wine"] {
+
+    --feature-color:
+        var(--wine-plum);
+
+}
+
+
+/* =========================================================
+   DIVISÃO ENTRE EDIÇÕES
+   ========================================================= */
+
+.featured-zine + .featured-zine {
+
+    position: relative;
+
+}
+
+
+.featured-zine + .featured-zine::before {
+
+    content: "";
+
+    position: absolute;
+
+    left:
+        calc(
+            clamp(
+                32px,
+                5vw,
+                80px
+            ) / -2
+        );
+
+    top: 0;
+
+    width: 1px;
+
+    height: 100%;
+
+    background:
+        rgba(
+            16,
+            11,
+            9,
+            .18
+        );
+
+}
+
+
+/* =========================================================
+   CABEÇALHO
+   FICA FIXO — NÃO DESCE COM A PÁGINA
+   ========================================================= */
+
+.zines-header {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    width: 100%;
+
+    height: 80px;
+
+    z-index: 1000;
+
+    transform: none;
+
+    transition: none;
+
+}
+
+
+/*
+ * Garante que nenhuma transformação
+ * herdada altere o cabeçalho.
+ */
+
+.zines-page > .zines-header {
+
+    position: fixed;
+
+    top: 0;
+
+    transform: none;
+
+}
+
+
+.zines-header {
+
+    transition:
+        transform 220ms ease;
+
+}
+
+
+.zines-header.is-hidden {
+
+    transform:
+        translateY(-100%);
+
+}
+
+
+.featured-object {
+
+    max-width:
+        min(80vw, 1320px) !important;
+
+    min-height:
+        min(68vh, 780px) !important;
+
+}
+
+
+.featured-cover,
+.featured-information {
+
+    min-height:
+        min(74vh, 780px) !important;
+
+}
+
+
+.featured-controls {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 0;
+
+    right: 0;
+
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 0 34px;
+
+    pointer-events: none;
+
+}
+
+
+.featured-control {
+
+    width: 42px;
+
+    height: 42px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: inherit;
+
+    font-size: 38px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+}
+
+
+.featured-control:hover,
+.featured-control:focus-visible {
+
+    opacity: .55;
+
+}
+
+
+.spine-dots i {
+
+    width: 18px;
+
+    height:18px;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+
+    .featured-track {
+
+        gap: 28px;
+
+        padding:
+            15px
+            20px
+            40px;
+
+        scroll-padding-left: 20px;
+
+    }
+
+
+    .featured-zine {
+
+        flex:
+            0 0 88vw;
+
+        width: 88vw;
+
+    }
+
+
+}
+
+.featured-cover > img {
+
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    width:
+        76%;
+
+    height:
+        89%;
+
+    aspect-ratio:
+        2 / 3;
+
+    object-fit:
+        cover;
+
+    box-shadow:
+        12px 14px 0
+        var(--feature-color);
+}
+
+
+/* =========================================
+   IDENTIDADE VISUAL DAS EDIÇÕES
+========================================= */
+
+/* 01 — PRETO / CREME */
+.featured-zine[data-color="chartreuse"] {
+    --feature-color: #100b09;
+    --edition-ink: #fff3df;
+}
+
+/* 02 — VERMELHO / PRETO */
+.featured-zine[data-color="pink"] {
+    --feature-color: #ec1f20;
+    --edition-ink: #100b09;
+}
+
+/* 03 — LARANJA / CREME */
+.featured-zine[data-color="green"] {
+    --feature-color: #f36b21;
+    --edition-ink: #fff3df;
+}
+
+/* Edições 04 e 05 mantêm as cores da identidade original. */
+.featured-zine[data-color="indigo"] {
+    --feature-color: #2c1b80;
+    --edition-ink: #fff3df;
+}
+
+.featured-zine[data-color="wine"] {
+    --feature-color: #4f2730;
+    --edition-ink: #fff3df;
+}
+
+/* Apply each edition palette to the complete featured block. */
+.featured-zine[data-color="chartreuse"] .featured-object,
+.featured-zine[data-color="pink"] .featured-object,
+.featured-zine[data-color="green"] .featured-object,
+.featured-zine[data-color="indigo"] .featured-object,
+.featured-zine[data-color="wine"] .featured-object {
+    background: var(--feature-color) !important;
+    color: var(--edition-ink) !important;
+}
+
+.featured-zine[data-color="chartreuse"] .featured-index,
+.featured-zine[data-color="pink"] .featured-index,
+.featured-zine[data-color="green"] .featured-index,
+.featured-zine[data-color="indigo"] .featured-index,
+.featured-zine[data-color="wine"] .featured-index,
+.featured-zine[data-color="chartreuse"] .featured-information,
+.featured-zine[data-color="pink"] .featured-information,
+.featured-zine[data-color="green"] .featured-information,
+.featured-zine[data-color="indigo"] .featured-information,
+.featured-zine[data-color="wine"] .featured-information,
+.featured-zine[data-color="chartreuse"] .featured-spine,
+.featured-zine[data-color="pink"] .featured-spine,
+.featured-zine[data-color="green"] .featured-spine,
+.featured-zine[data-color="indigo"] .featured-spine,
+.featured-zine[data-color="wine"] .featured-spine {
+    color: var(--edition-ink) !important;
+}
+
+.featured-zine[data-color="chartreuse"] .cover-color,
+.featured-zine[data-color="pink"] .cover-color,
+.featured-zine[data-color="green"] .cover-color,
+.featured-zine[data-color="indigo"] .cover-color,
+.featured-zine[data-color="wine"] .cover-color {
+    background: var(--feature-color) !important;
+}
+
+.featured-zine[data-color="chartreuse"] .spine-dots i,
+.featured-zine[data-color="pink"] .spine-dots i,
+.featured-zine[data-color="green"] .spine-dots i,
+.featured-zine[data-color="indigo"] .spine-dots i,
+.featured-zine[data-color="wine"] .spine-dots i {
+    background: var(--edition-ink) !important;
+}
+
+
+/* =========================================
+   APROXIMAR CAPAS E ARQUIVO
+========================================= */
+
+.featured-zines {
+    margin-bottom: 0 !important;
+    padding-bottom: 20px !important;
+}
+
+.zines-archive {
+    margin-top: 0 !important;
+    padding-top: 20px !important;
+}
