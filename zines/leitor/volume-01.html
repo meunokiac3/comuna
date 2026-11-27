@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -30,10 +31,10 @@
 
 <header class="reader-header">
 
-
     <a
-        href="../../index.html"
+        href="../../zines.html"
         class="reader-dots"
+        aria-label="Voltar aos zines"
     >
 
         <span></span>
@@ -44,7 +45,7 @@
 
 
     <a
-        href="../../sobre.html"
+        href="../../comuna.html"
         class="reader-comuna"
     >
         comuna
@@ -61,11 +62,6 @@
 
 <main class="reader-main">
 
-
-    <!-- ==========================================
-         FLIPBOOK
-    =========================================== -->
-
     <section class="book-area">
 
         <button
@@ -76,24 +72,14 @@
             ←
         </button>
 
-
         <div class="book">
 
             <div
-                class="book-page left-page"
+                class="book-page"
                 id="left-page"
-            >
-            </div>
-
-
-            <div
-                class="book-page right-page"
-                id="right-page"
-            >
-            </div>
+            ></div>
 
         </div>
-
 
         <button
             class="book-arrow next"
@@ -105,11 +91,6 @@
 
     </section>
 
-
-
-    <!-- ==========================================
-         THUMBNAILS
-    =========================================== -->
 
     <aside class="thumbnails">
 
@@ -126,22 +107,34 @@
 
 <footer class="reader-controls">
 
-    <button id="control-prev">
+    <button
+        id="control-prev"
+        type="button"
+        aria-label="Página anterior"
+    >
         ←
     </button>
 
 
     <span id="page-counter">
-        01 / 24
+        01 / 04
     </span>
 
 
-    <button id="control-next">
+    <button
+        id="control-next"
+        type="button"
+        aria-label="Próxima página"
+    >
         →
     </button>
 
 
-    <button id="fullscreen">
+    <button
+        id="fullscreen"
+        type="button"
+        aria-label="Tela cheia"
+    >
         ⛶
     </button>
 
