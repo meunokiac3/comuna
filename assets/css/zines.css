@@ -341,70 +341,46 @@ a {
 
 
 
+
 /* =====================================================
    CADA EDIÇÃO
 ===================================================== */
 
 .featured-zine {
+    --feature-color: var(--racing-red);
 
-    --feature-color:
-        var(--racing-red);
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    flex:
-        0 0 min(90vw, 1400px);
-
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 min(90vw, 1400px);
     scroll-snap-align: start;
-
     align-items: center;
-
 }
 
-
-.featured-zine[data-color="racing-red"] {
-
-    --feature-color:
-        var(--racing-red);
-
+.featured-zine[data-color="racing-red"],
+.featured-zine[data-color="red"] {
+    --feature-color: var(--racing-red);
 }
-
 
 .featured-zine[data-color="pink"] {
-
-    --feature-color:
-        var(--baby-pink);
-
+    --feature-color: var(--baby-pink);
 }
 
-
-.featured-zine[data-color="green"] {
-
-    --feature-color:
-        var(--chartreuse);
-
+.featured-zine[data-color="green"],
+.featured-zine[data-color="chartreuse"] {
+    --feature-color: var(--chartreuse);
 }
 
+.featured-zine[data-color="orange"] {
+    --feature-color: var(--orange);
+}
 
 .featured-zine[data-color="indigo"] {
-
-    --feature-color:
-        var(--indigo-ink);
-
+    --feature-color: var(--indigo-ink);
 }
-
 
 .featured-zine[data-color="wine"] {
-
-    --feature-color:
-        var(--wine-plum);
-
+    --feature-color: var(--wine-plum);
 }
-
 
 
 /* =====================================================
@@ -412,25 +388,15 @@ a {
 ===================================================== */
 
 .featured-index {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     margin-bottom: 10px;
-
     font-size: 10px;
-
     text-transform: uppercase;
-
     letter-spacing: .08em;
-
     opacity: .65;
-
 }
-
 
 
 /* =====================================================
@@ -438,37 +404,19 @@ a {
 ===================================================== */
 
 .featured-object {
-
     position: relative;
-
-    width:
-        100%;
-
-    max-width:
-        min(90vw, 1400px);
-
-    min-height:
-        min(80vh, 860px);
-
-    margin-inline:
-        auto;
-
-    aspect-ratio:
-        auto;
+    width: 100%;
+    max-width: min(90vw, 1400px);
+    min-height: min(80vh, 860px);
+    margin-inline: auto;
+    aspect-ratio: auto;
 
     display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 
-    grid-template-columns:
-        minmax(0, 1fr) minmax(0, 1fr);
-
-    background:
-        var(--cream);
-
-    color:
-        var(--black);
-
+    background: var(--cream);
+    color: var(--black);
 }
-
 
 
 /* =====================================================
@@ -476,30 +424,16 @@ a {
 ===================================================== */
 
 .featured-cover {
-
     position: relative;
+    width: 100%;
+    min-height: min(72vh, 760px);
+    padding: 0;
 
-    width:
-      100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    min-height:
-        min(72vh, 760px);
-
-    padding:
-        0;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    overflow:
-        hidden;
-
+    overflow: hidden;
 }
 
 
@@ -508,22 +442,11 @@ a {
 ===================================================== */
 
 .cover-color {
-
     position: absolute;
-
-    width:
-        62%;
-
-    height:
-        72%;
-
-    background:
-        var(--feature-color);
-
-    
-    z-index:
-        0;
-
+    width: 62%;
+    height: 72%;
+    background: var(--feature-color);
+    z-index: 0;
 }
 
 
@@ -532,53 +455,45 @@ a {
 ===================================================== */
 
 .cover-placeholder {
+    position: relative;
+    z-index: 1;
 
-    position:
-        relative;
+    width: 76%;
+    height: 89%;
+    max-width: none;
+    aspect-ratio: 2 / 3;
 
-    z-index:
-        1;
+    background: var(--black);
+    color: var(--cream);
 
-    /*
-       A capa volta a ocupar exatamente
-       a proporção que você tinha definido.
-    */
+    padding: 22px;
 
-    width:
-        76%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-    height:
-        89%;
-
-    max-width:
-        none;
-
-    aspect-ratio:
-        2 / 3;
-
-    background:
-        var(--black);
-
-    color:
-        var(--cream);
-
-    padding:
-        22px;
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    justify-content:
-        space-between;
-
-    box-shadow:
-        12px 14px 0
-        var(--feature-color);
-
+    box-shadow: 12px 14px 0 var(--feature-color);
 }
+
+
+/* =====================================================
+   IMAGEM DA CAPA
+===================================================== */
+
+.featured-cover > img {
+    position: relative;
+    z-index: 1;
+    display: block;
+
+    width: 76%;
+    height: 89%;
+
+    object-fit: contain;
+    object-position: center;
+
+    box-shadow: 12px 14px 0 var(--feature-color);
+}
+
 
 
 /* =====================================================
@@ -1345,78 +1260,51 @@ a {
 
 
 /* =====================================================
-   CORES
+   CORES DAS PASTAS — ARQUIVO
 ===================================================== */
 
+/* 01 — PRETO E CREME */
 .zine-volume[data-color="red"] {
-
-    --volume-color:
-        var(--racing-red);
-
+    --volume-color: #100b09;
+    --volume-ink: #fff3df;
 }
 
-
+/* 02 — VERMELHO E PRETO */
 .zine-volume[data-color="pink"] {
-
-    --volume-color:
-        var(--baby-pink);
-
+    --volume-color: #ec1f20;
+    --volume-ink: #100b09;
 }
 
-
+/* 03 — LARANJA E CREME */
 .zine-volume[data-color="green"] {
-
-    --volume-color:
-        var(--chartreuse);
-
+    --volume-color: #f36b21;
+    --volume-ink: #fff3df;
 }
 
-
+/* DEMAIS EDIÇÕES */
 .zine-volume[data-color="indigo"] {
-
-    --volume-color:
-        var(--indigo-ink);
-
-    color:
-        var(--cream);
-
+    --volume-color: var(--indigo-ink);
+    --volume-ink: var(--cream);
 }
-
 
 .zine-volume[data-color="wine"] {
-
-    --volume-color:
-        var(--wine-plum);
-
-    color:
-        var(--cream);
-
+    --volume-color: var(--wine-plum);
+    --volume-ink: var(--cream);
 }
 
-
-.zine-volume[data-color="indigo"]
-.volume-tab,
-
-.zine-volume[data-color="wine"]
-.volume-tab {
-
-    color:
-        var(--cream);
-
+/* APLICAÇÃO DAS CORES */
+.zine-volume {
+    color: var(--volume-ink, var(--black));
 }
 
-
-.zine-volume[data-color="indigo"]
-.volume-dots i,
-
-.zine-volume[data-color="wine"]
-.volume-dots i {
-
-    background:
-        var(--cream);
-
+.zine-volume .volume-tab {
+    background: var(--volume-color);
+    color: var(--volume-ink, var(--black));
 }
 
+.zine-volume .volume-dots i {
+    background: var(--volume-ink, var(--black));
+}
 
 
 /* =====================================================
@@ -3150,4 +3038,122 @@ a {
     }
 
 
+}
+
+.featured-cover > img {
+
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    width:
+        76%;
+
+    height:
+        89%;
+
+    aspect-ratio:
+        2 / 3;
+
+    object-fit:
+        cover;
+
+    box-shadow:
+        12px 14px 0
+        var(--feature-color);
+}
+
+
+/* =========================================
+   IDENTIDADE VISUAL DAS EDIÇÕES
+========================================= */
+
+/* 01 — PRETO / CREME */
+.featured-zine[data-color="chartreuse"] {
+    --feature-color: #100b09;
+    --edition-ink: #fff3df;
+}
+
+/* 02 — VERMELHO / PRETO */
+.featured-zine[data-color="pink"] {
+    --feature-color: #ec1f20;
+    --edition-ink: #100b09;
+}
+
+/* 03 — LARANJA / CREME */
+.featured-zine[data-color="green"] {
+    --feature-color: #f36b21;
+    --edition-ink: #fff3df;
+}
+
+/* Edições 04 e 05 mantêm as cores da identidade original. */
+.featured-zine[data-color="indigo"] {
+    --feature-color: #2c1b80;
+    --edition-ink: #fff3df;
+}
+
+.featured-zine[data-color="wine"] {
+    --feature-color: #4f2730;
+    --edition-ink: #fff3df;
+}
+
+/* Apply each edition palette to the complete featured block. */
+.featured-zine[data-color="chartreuse"] .featured-object,
+.featured-zine[data-color="pink"] .featured-object,
+.featured-zine[data-color="green"] .featured-object,
+.featured-zine[data-color="indigo"] .featured-object,
+.featured-zine[data-color="wine"] .featured-object {
+    background: var(--feature-color) !important;
+    color: var(--edition-ink) !important;
+}
+
+.featured-zine[data-color="chartreuse"] .featured-index,
+.featured-zine[data-color="pink"] .featured-index,
+.featured-zine[data-color="green"] .featured-index,
+.featured-zine[data-color="indigo"] .featured-index,
+.featured-zine[data-color="wine"] .featured-index,
+.featured-zine[data-color="chartreuse"] .featured-information,
+.featured-zine[data-color="pink"] .featured-information,
+.featured-zine[data-color="green"] .featured-information,
+.featured-zine[data-color="indigo"] .featured-information,
+.featured-zine[data-color="wine"] .featured-information,
+.featured-zine[data-color="chartreuse"] .featured-spine,
+.featured-zine[data-color="pink"] .featured-spine,
+.featured-zine[data-color="green"] .featured-spine,
+.featured-zine[data-color="indigo"] .featured-spine,
+.featured-zine[data-color="wine"] .featured-spine {
+    color: var(--edition-ink) !important;
+}
+
+.featured-zine[data-color="chartreuse"] .cover-color,
+.featured-zine[data-color="pink"] .cover-color,
+.featured-zine[data-color="green"] .cover-color,
+.featured-zine[data-color="indigo"] .cover-color,
+.featured-zine[data-color="wine"] .cover-color {
+    background: var(--feature-color) !important;
+}
+
+.featured-zine[data-color="chartreuse"] .spine-dots i,
+.featured-zine[data-color="pink"] .spine-dots i,
+.featured-zine[data-color="green"] .spine-dots i,
+.featured-zine[data-color="indigo"] .spine-dots i,
+.featured-zine[data-color="wine"] .spine-dots i {
+    background: var(--edition-ink) !important;
+}
+
+
+/* =========================================
+   APROXIMAR CAPAS E ARQUIVO
+========================================= */
+
+.featured-zines {
+    margin-bottom: 0 !important;
+    padding-bottom: 20px !important;
+}
+
+.zines-archive {
+    margin-top: 0 !important;
+    padding-top: 20px !important;
 }

@@ -1,74 +1,58 @@
+
 /* =====================================================
-   LEITOR
+   READER — EDITORIAL SINGLE PAGE
 ===================================================== */
 
 .reader {
+    --reader-bg: #171311;
+    --reader-fg: var(--cream);
 
-    background: #171311;
-
-    color: var(--cream);
-
+    background: var(--reader-bg);
+    color: var(--reader-fg);
     min-height: 100vh;
-
+    height: 100vh;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 
 /* =====================================================
-   HEADER
+   HEADER — PRESERVADO
 ===================================================== */
 
 .reader-header {
-
+    position: relative;
+    flex: 0 0 70px;
     height: 70px;
-
-    padding:
-        0 35px;
-
+    padding: 0 35px;
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     font-size: 13px;
+    z-index: 20;
 }
-
 
 .reader-comuna {
-
     position: absolute;
-
     left: 50%;
-
-    transform:
-        translateX(-50%);
-
+    transform: translateX(-50%);
     letter-spacing: -.05em;
-
     font-size: 18px;
+    text-decoration: none;
+    color: inherit;
 }
 
-
-/* =====================================================
-   PONTOS
-===================================================== */
-
 .reader-dots {
-
     display: flex;
-
+    align-items: center;
     gap: 5px;
 }
 
-
 .reader-dots span {
-
     width: 14px;
     height: 14px;
-
     background: var(--cream);
-
     border-radius: 50%;
 }
 
@@ -78,355 +62,253 @@
 ===================================================== */
 
 .reader-main {
-
-    height:
-        calc(100vh - 125px);
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    box-sizing: border-box;
 
     display: grid;
-
-    grid-template-columns:
-        minmax(0, 1fr)
-        130px;
-
+    grid-template-columns: minmax(0, 1fr) 105px;
     gap: 25px;
 
-    padding:
-        20px 35px;
+    padding: 10px 35px 15px;
 }
 
 
 /* =====================================================
-   LIVRO
+   PÁGINA PRINCIPAL
 ===================================================== */
 
 .book-area {
-
     position: relative;
+    min-width: 0;
+    min-height: 0;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 }
 
-
 .book {
-
-    width: min(78vw, 1100px);
-
-    aspect-ratio: 1.5 / 1;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
 
     display: flex;
+    align-items: center;
+    justify-content: center;
 
-    perspective: 1800px;
-
-    box-shadow:
-        0 30px 70px rgba(0,0,0,.45);
+    background: transparent;
+    box-shadow: none;
 }
-
 
 .book-page {
-
-    position: relative;
-
-    width: 50%;
+    width: 100%;
     height: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     overflow: hidden;
-
-    background: var(--cream);
-
+    background: transparent;
 }
 
-
 .book-page img {
+    display: block;
 
     width: 100%;
     height: 100%;
 
-    display: block;
+    object-fit: contain;
+    object-position: center;
 
-    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 
 /* =====================================================
-   DOBRA
-===================================================== */
-
-.left-page {
-
-    transform-origin: right center;
-
-}
-
-
-.right-page {
-
-    transform-origin: left center;
-
-}
-
-
-.book::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 50%;
-
-    top: 0;
-    bottom: 0;
-
-    width: 2px;
-
-    transform:
-        translateX(-50%);
-
-    background:
-        rgba(0,0,0,.12);
-
-    pointer-events: none;
-}
-
-
-/* =====================================================
-   BOTÕES LATERAIS
+   SETAS DE NAVEGAÇÃO
 ===================================================== */
 
 .book-arrow {
-
     position: absolute;
-
     z-index: 10;
-
     top: 50%;
 
-    transform:
-        translateY(-50%);
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border: 0;
-
     background: transparent;
-
     color: var(--cream);
 
-    font-size: 28px;
+    font-family: inherit;
+    font-size: 30px;
 
     cursor: pointer;
-
-    opacity: .65;
+    opacity: .55;
 
     transition:
         opacity 200ms ease,
         transform 200ms ease;
 }
 
-
 .book-arrow:hover {
-
     opacity: 1;
 }
 
-
-.previous {
-
+.book-arrow.previous {
     left: 0;
 }
 
-
-.next {
-
+.book-arrow.next {
     right: 0;
 }
 
 
 /* =====================================================
-   THUMBNAILS
+   MINIATURAS À DIREITA
 ===================================================== */
 
 .thumbnails {
-
+    width: 105px;
     height: 100%;
-
+    min-height: 0;
     overflow: hidden;
 }
 
-
 .thumbnail-list {
-
+    width: 100%;
     height: 100%;
-
-    overflow-y: auto;
+    min-height: 0;
 
     display: flex;
-
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    gap: 10px;
+    gap: 9px;
+    padding: 4px;
 
-    padding-right: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
-
 .thumbnail {
+    width: 100%;
+    max-height: 76px;
+    min-height: 0;
 
-    width: 90px;
+    flex: 1 1 0;
 
-    aspect-ratio: 3 / 4;
+    padding: 0;
+    border: 1px solid transparent;
 
-    flex-shrink: 0;
-
-    border:
-        1px solid transparent;
-
-    opacity: .45;
+    background: transparent;
+    opacity: .38;
 
     cursor: pointer;
+    overflow: hidden;
 
     transition:
         opacity 200ms ease,
-        transform 200ms ease,
         border-color 200ms ease;
 }
 
-
 .thumbnail img {
+    display: block;
 
     width: 100%;
     height: 100%;
 
-    object-fit: cover;
-
-    display: block;
+    object-fit: contain;
+    object-position: center;
 }
-
 
 .thumbnail:hover {
-
-    opacity: .8;
-
+    opacity: .75;
 }
 
-
 .thumbnail.active {
-
     opacity: 1;
-
-    border:
-        2px solid var(--cream);
-
-    transform:
-        scale(1.04);
+    border: 2px solid var(--cream);
 }
 
 
 /* =====================================================
-   CONTROLES
+   CONTROLES INFERIORES
 ===================================================== */
 
 .reader-controls {
-
+    flex: 0 0 55px;
     height: 55px;
 
-    padding:
-        0 35px;
+    padding: 0 35px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 25px;
 
     font-size: 12px;
 }
 
-
 .reader-controls button {
-
     border: 0;
-
     background: transparent;
-
     color: var(--cream);
 
     font-family: inherit;
-
     cursor: pointer;
-
     font-size: 16px;
+
+    opacity: .7;
+    transition: opacity 200ms ease;
 }
 
+.reader-controls button:hover {
+    opacity: 1;
+}
 
 #page-counter {
-
     min-width: 60px;
-
     text-align: center;
+    font-variant-numeric: tabular-nums;
 }
 
 
 /* =====================================================
-   ANIMAÇÃO
+   RESPONSIVIDADE — TABLET
 ===================================================== */
 
-.page-turn-left {
+@media (max-width: 900px) {
 
-    animation:
-        turn-left
-        550ms
-        ease;
-}
-
-
-.page-turn-right {
-
-    animation:
-        turn-right
-        550ms
-        ease;
-}
-
-
-@keyframes turn-left {
-
-    0% {
-        transform:
-            rotateY(0deg);
+    .reader-main {
+        grid-template-columns: minmax(0, 1fr) 85px;
+        gap: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
-    50% {
-        transform:
-            rotateY(-90deg);
+    .thumbnails {
+        width: 85px;
     }
 
-    100% {
-        transform:
-            rotateY(0deg);
-    }
-}
-
-
-@keyframes turn-right {
-
-    0% {
-        transform:
-            rotateY(0deg);
+    .thumbnail-list {
+        gap: 6px;
     }
 
-    50% {
-        transform:
-            rotateY(90deg);
-    }
-
-    100% {
-        transform:
-            rotateY(0deg);
-    }
 }
 
 
@@ -437,85 +319,84 @@
 @media (max-width: 700px) {
 
     .reader {
-
-        overflow-y: auto;
-
+        height: 100vh;
+        min-height: 100vh;
+        overflow: hidden;
     }
-
 
     .reader-header {
-
+        flex-basis: 60px;
+        height: 60px;
         padding: 0 20px;
-
     }
 
+    .reader-comuna {
+        font-size: 17px;
+    }
+
+    .reader-dots span {
+        width: 11px;
+        height: 11px;
+    }
 
     .reader-main {
-
-        height: auto;
+        flex: 1;
+        min-height: 0;
 
         display: flex;
-
         flex-direction: column;
 
-        padding:
-            20px;
-
+        padding: 8px 12px;
+        gap: 12px;
     }
 
+    .book-area {
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+    }
 
     .book {
-
         width: 100%;
-
-        aspect-ratio: 1.45 / 1;
-
+        height: 100%;
     }
-
 
     .book-arrow {
-
-        font-size: 22px;
-
+        width: 30px;
+        font-size: 23px;
     }
-
 
     .thumbnails {
-
-        height: 90px;
-
+        flex: 0 0 78px;
         width: 100%;
-
+        height: 78px;
         overflow: hidden;
-
     }
-
 
     .thumbnail-list {
-
         flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        gap: 8px;
+        padding: 4px;
 
         overflow-x: auto;
-
         overflow-y: hidden;
-
     }
-
 
     .thumbnail {
-
-        width: 55px;
-
-        height: 72px;
-
+        flex: 0 0 48px;
+        width: 48px;
+        height: 66px;
+        max-height: none;
     }
 
-
     .reader-controls {
-
-        padding:
-            0 20px;
-
+        flex-basis: 50px;
+        height: 50px;
+        padding: 0 15px;
+        gap: 22px;
     }
 
 }

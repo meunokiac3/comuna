@@ -1,11 +1,74 @@
+
 /* =====================================================
-   CONFIGURAÇÃO
+   EDIÇÕES
 ===================================================== */
 
-const totalPages = 24;
+const editions = {
+    "u_0_01": {
+        title: "ZINE 01",
+        folder: "u_0_01",
+        pages: [
+            "mani 1.png",
+            "mani 2.png",
+            "mani 3.png",
+            "mani 4.png"
+        ]
+    },
 
-const imagePath =
-    "../../assets/img/zines/volume-01/";
+    "u-1_01": {
+        title: "ZINE 02",
+        folder: "u-1_01",
+        pages: [
+            "u_01_01.png",
+            "u_01_02.png",
+            "u_01_03.png",
+            "u_01_04.png",
+            "u_01_05.png",
+            "u_01_06.png",
+            "u_01_07.png",
+            "u_01_08.png",
+            "u_01_09.png"
+        ]
+    },
+
+    "u-2_01": {
+        title: "ZINE 03",
+        folder: "u-2_01",
+        pages: [
+            "U 1.png",
+            "U 2.png",
+            "U 3.png",
+            "U 4.png",
+            "U 5.png",
+            "U 6.png",
+            "U 7.png",
+            "U 8.png",
+            "U 10.png",
+            "U 11.png",
+            "U 12.png",
+            "U 13.png",
+            "U 14.png",
+            "U 15.png",
+            "U 18.png",
+            "U 19.png"
+        ]
+    }
+};
+
+
+/* =====================================================
+   IDENTIFICAR EDIÇÃO
+===================================================== */
+
+const params = new URLSearchParams(window.location.search);
+
+const editionId = params.get("edicao") || "u_0_01";
+
+const edition = editions[editionId] || editions["u_0_01"];
+
+const totalPages = edition.pages.length;
+
+const imagePath = `../${edition.folder}/`;
 
 
 /* =====================================================
@@ -19,85 +82,49 @@ let currentPage = 1;
    ELEMENTOS
 ===================================================== */
 
-const leftPage =
-    document.getElementById("left-page");
-
-const rightPage =
-    document.getElementById("right-page");
-
-const counter =
-    document.getElementById("page-counter");
-
-const thumbnails =
-    document.getElementById("thumbnail-list");
+const page = document.getElementById("left-page");
+const counter = document.getElementById("page-counter");
+const thumbnails = document.getElementById("thumbnail-list");
+const editionLabel = document.querySelector(".reader-header > span");
 
 
 /* =====================================================
-   IMAGEM
+   CAMINHO DAS IMAGENS
 ===================================================== */
 
 function pageImage(number) {
+    const filename = edition.pages[number - 1];
 
-    return `${imagePath}${String(number).padStart(2, "0")}.jpg`;
-
+    return imagePath + encodeURIComponent(filename);
 }
 
 
 /* =====================================================
-   MOSTRAR PÁGINAS
+   MOSTRAR UMA PÁGINA
 ===================================================== */
 
-function showPages() {
+function showPage() {
 
-    let left = currentPage;
+    page.innerHTML = "";
 
-    let right = currentPage + 1;
-
-
-    /*
-     * Página esquerda
-     */
-
-    if (left <= totalPages) {
-
-        leftPage.innerHTML = `
-            <img
-                src="${pageImage(left)}"
-                alt="Página ${left}"
-            >
-        `;
-
-    } else {
-
-        leftPage.innerHTML = "";
-
+    if (currentPage < 1 || currentPage > totalPages) {
+        return;
     }
 
+    const img = document.createElement("img");
 
-    /*
-     * Página direita
-     */
+    img.src = pageImage(currentPage);
+    img.alt = `Página ${currentPage}`;
+    img.draggable = false;
 
-    if (right <= totalPages) {
+    img.onerror = () => {
+        console.error("Imagem não encontrada:", img.src);
+    };
 
-        rightPage.innerHTML = `
-            <img
-                src="${pageImage(right)}"
-                alt="Página ${right}"
-            >
-        `;
-
-    } else {
-
-        rightPage.innerHTML = "";
-
-    }
-
+    page.appendChild(img);
 
     updateCounter();
-
     updateThumbnails();
-
 }
 
 
@@ -107,13 +134,6 @@ function showPages() {
 
 function updateCounter() {
 
-    const displayed =
-        Math.min(
-            currentPage + 1,
-            totalPages
-        );
-
-
     counter.textContent =
         `${String(currentPage).padStart(2, "0")} / ${String(totalPages).padStart(2, "0")}`;
 
@@ -121,125 +141,77 @@ function updateCounter() {
 
 
 /* =====================================================
-   PRÓXIMA
+   PRÓXIMA PÁGINA
 ===================================================== */
 
 function nextPage() {
 
-    if (currentPage >= totalPages - 1) {
-        return;
-    }
+    if (currentPage >= totalPages) return;
 
+    currentPage++;
 
-    rightPage.classList.add(
-        "page-turn-right"
-    );
-
-
-    setTimeout(() => {
-
-        currentPage += 2;
-
-        showPages();
-
-        rightPage.classList.remove(
-            "page-turn-right"
-        );
-
-    }, 250);
+    showPage();
 
 }
 
 
 /* =====================================================
-   ANTERIOR
+   PÁGINA ANTERIOR
 ===================================================== */
 
 function previousPage() {
 
-    if (currentPage <= 1) {
-        return;
-    }
+    if (currentPage <= 1) return;
 
+    currentPage--;
 
-    leftPage.classList.add(
-        "page-turn-left"
-    );
-
-
-    setTimeout(() => {
-
-        currentPage -= 2;
-
-        showPages();
-
-        leftPage.classList.remove(
-            "page-turn-left"
-        );
-
-    }, 250);
+    showPage();
 
 }
 
 
 /* =====================================================
-   THUMBNAILS
+   MINIATURAS
 ===================================================== */
 
 function createThumbnails() {
 
     thumbnails.innerHTML = "";
 
+    for (let i = 1; i <= totalPages; i++) {
 
-    for (
-        let i = 1;
-        i <= totalPages;
-        i++
-    ) {
+        const thumb = document.createElement("button");
 
-        const thumb =
-            document.createElement("button");
+        thumb.className = "thumbnail";
+        thumb.dataset.page = i;
+        thumb.type = "button";
 
-
-        thumb.className =
-            "thumbnail";
-
-
-        thumb.dataset.page =
-            i;
-
-
-        thumb.innerHTML = `
-            <img
-                src="${pageImage(i)}"
-                alt="Página ${i}"
-            >
-        `;
-
-
-        thumb.addEventListener(
-            "click",
-            () => {
-
-                /*
-                 * Mantemos sempre a abertura
-                 * em página ímpar.
-                 */
-
-                currentPage =
-                    i % 2 === 0
-                        ? i - 1
-                        : i;
-
-                showPages();
-
-            }
+        thumb.setAttribute(
+            "aria-label",
+            `Abrir página ${i}`
         );
 
+        const img = document.createElement("img");
 
-        thumbnails.appendChild(
-            thumb
-        );
+        img.src = pageImage(i);
+        img.alt = `Miniatura da página ${i}`;
+        img.loading = "lazy";
+
+        img.onerror = () => {
+            console.error("Miniatura não encontrada:", img.src);
+        };
+
+        thumb.appendChild(img);
+
+        thumb.addEventListener("click", () => {
+
+            currentPage = i;
+
+            showPage();
+
+        });
+
+        thumbnails.appendChild(thumb);
 
     }
 
@@ -247,29 +219,26 @@ function createThumbnails() {
 
 
 /* =====================================================
-   THUMBNAIL ATIVA
+   MINIATURA ATIVA
 ===================================================== */
 
 function updateThumbnails() {
 
-    const all =
-        document.querySelectorAll(
-            ".thumbnail"
-        );
-
+    const all = document.querySelectorAll(".thumbnail");
 
     all.forEach(thumb => {
 
-        const number =
-            Number(
-                thumb.dataset.page
-            );
+        const number = Number(thumb.dataset.page);
 
+        const active = number === currentPage;
 
-        thumb.classList.toggle(
-            "active",
-            number === currentPage
-        );
+        thumb.classList.toggle("active", active);
+
+        if (active) {
+            thumb.setAttribute("aria-current", "page");
+        } else {
+            thumb.removeAttribute("aria-current");
+        }
 
     });
 
@@ -280,53 +249,68 @@ function updateThumbnails() {
    BOTÕES
 ===================================================== */
 
-document
-    .getElementById("next")
-    .addEventListener(
-        "click",
-        nextPage
-    );
+document.getElementById("next").addEventListener(
+    "click",
+    nextPage
+);
 
+document.getElementById("previous").addEventListener(
+    "click",
+    previousPage
+);
 
-document
-    .getElementById("previous")
-    .addEventListener(
-        "click",
-        previousPage
-    );
+document.getElementById("control-next").addEventListener(
+    "click",
+    nextPage
+);
 
-
-document
-    .getElementById("control-next")
-    .addEventListener(
-        "click",
-        nextPage
-    );
-
-
-document
-    .getElementById("control-prev")
-    .addEventListener(
-        "click",
-        previousPage
-    );
+document.getElementById("control-prev").addEventListener(
+    "click",
+    previousPage
+);
 
 
 /* =====================================================
    TECLADO
 ===================================================== */
 
-document.addEventListener(
-    "keydown",
-    event => {
+document.addEventListener("keydown", event => {
 
-        if (event.key === "ArrowRight") {
-            nextPage();
-        }
+    if (event.key === "ArrowRight") {
+        nextPage();
+    }
+
+    if (event.key === "ArrowLeft") {
+        previousPage();
+    }
+
+});
 
 
-        if (event.key === "ArrowLeft") {
-            previousPage();
+/* =====================================================
+   TELA CHEIA
+===================================================== */
+
+document.getElementById("fullscreen").addEventListener(
+    "click",
+    async () => {
+
+        try {
+
+            if (!document.fullscreenElement) {
+
+                await document.documentElement.requestFullscreen();
+
+            } else {
+
+                await document.exitFullscreen();
+
+            }
+
+        } catch (error) {
+
+            console.error("Erro ao abrir tela cheia:", error);
+
         }
 
     }
@@ -334,33 +318,13 @@ document.addEventListener(
 
 
 /* =====================================================
-   FULLSCREEN
-===================================================== */
-
-document
-    .getElementById("fullscreen")
-    .addEventListener(
-        "click",
-        () => {
-
-            if (!document.fullscreenElement) {
-
-                document.documentElement.requestFullscreen();
-
-            } else {
-
-                document.exitFullscreen();
-
-            }
-
-        }
-    );
-
-
-/* =====================================================
    INICIALIZAÇÃO
 ===================================================== */
 
+editionLabel.textContent = edition.title;
+
+document.title = `Leitura — ${edition.title}`;
+
 createThumbnails();
 
-showPages();
+showPage();
